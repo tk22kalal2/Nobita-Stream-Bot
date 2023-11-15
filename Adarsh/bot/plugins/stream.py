@@ -19,11 +19,14 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
+async def delete_after_delay(log_msg, delay):
+    await asyncio.sleep(delay)
+    await log_msg.delete()
+    
 async def private_receive_handler(c: Client, m: Message):        
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-        await asyncio.sleep(1)
-        await log_msg.delete()
+        asyncio.create_task(delete_after_delay(log_msg, 1))
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
