@@ -36,17 +36,23 @@ async def render_page(id, secure_hash):
                     html = (await r.read()) % (heading, file_data.file_name, src, file_size)
     current_url = f'{Var.URL}/{str(id)}/{file_data.file_name}?hash={secure_hash}'
     html_code = f'''
-   <p>
+    <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-    <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: darkblue;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX Player</button>
-    
-    <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: darkred;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button>
-    
-    <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: orange;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button>&nbsp; <br>
-    
-    <button style="font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; padding: 10px; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
-</center>
+        <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: darkblue;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX Player</button>
+        
+        <br><br> <!-- Add vertical gap here -->
+        
+        <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: darkred;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button>
+        
+        <br><br> <!-- Add vertical gap here -->
+        
+        <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: orange;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button>&nbsp; <br>
+        
+        <br><br> <!-- Add vertical gap here -->
+        
+        <button style="font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; padding: 10px; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
+    </center>
 </p>
 
 '''
