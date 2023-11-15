@@ -49,7 +49,7 @@ async def render_page(id, secure_hash):
         
         <br><br> <!-- Add vertical gap here -->
         
-        <button style="font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0 20px 0 20px; padding: 10px; color: white;" onclick="window.location.href = '{current_url}'">    Download Now    </button>
+        <button style="font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0 20px 0 20px; padding: 10px; color: white;" onclick="window.location.href = '{current_url}'">.    Download Now    .</button>
     </center>
 </p>
 
