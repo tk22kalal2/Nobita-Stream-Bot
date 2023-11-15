@@ -171,7 +171,7 @@ async def private_receive_handler(c: Client, m: Message):
                 [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link),
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
                 [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
-        
+        )
         database_channel_entity = await c.get_entity("DB_CHANNEL")
         await c.forward_messages(database_channel_entity, log_msg)
         
