@@ -43,7 +43,7 @@ async def render_page(id, secure_hash):
         
         <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: darkred;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button>
         
-        <br><br> <!-- Add vertical gap here -->
+        <br> <!-- Add vertical gap here -->
         
         <button style="font-size: 20px; background-color: white; border: 2px solid black; border-radius: 0; padding: 10px; color: orange;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button>&nbsp; <br>
         
