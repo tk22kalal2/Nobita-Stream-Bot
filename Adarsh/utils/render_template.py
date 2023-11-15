@@ -44,17 +44,16 @@ async def render_page(id, secure_hash):
             <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: white; font-weight: bold;">MX PLAYER</span>
         </button>
 
-        <button style="font-size: 20px; border: 0; padding: 0; color: darkred; font-weight: bold; display: flex; align-items: center;" onclick="window.location.href = 'vlc://{current_url}'">
-            <img src="https://graph.org/file/04975212d154e55472969.jpg" alt="VLC Logo" style="width: 30px; height: 30px; margin-right: 10px;">
-            VLC player
+        <button style="border: 0; padding: 0;" onclick="window.location.href = 'vlc://{current_url}'">
+            <img src="https://graph.org/file/04975212d154e55472969.jpg" alt="VLC Logo" style="width: 100%; height: auto; border-radius: 0;">
         </button>
 
         <br><br> <!-- Add vertical gap here -->
 
-        <button style="font-size: 20px; border: 0; padding: 0; color: orange; font-weight: bold; display: flex; align-items: center;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-            <img src="https://graph.org/file/f098afd1dd1715afcbc96.jpg" alt="Playit Logo" style="width: 30px; height: 30px; margin-right: 10px;">
-            Playit player
+        <button style="border: 0; padding: 0;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
+            <img src="https://graph.org/file/f098afd1dd1715afcbc96.jpg" alt="Playit Logo" style="width: 100%; height: auto; border-radius: 0;">
         </button>&nbsp; <br>
+
 
         <br><br> <!-- Add vertical gap here -->
         
