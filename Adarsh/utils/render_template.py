@@ -39,13 +39,13 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkblue;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX Player</button>
+        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkblue; font-weight: bold;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX Player</button>
         
-        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkred;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button>
+        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkred; font-weight: bold;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button>
         
         <br><br> <!-- Add vertical gap here -->
         
-        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: solid orange;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button>&nbsp; <br>
+        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: orange; font-weight: bold;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button>&nbsp; <br>
         
         <br><br> <!-- Add vertical gap here -->
         
