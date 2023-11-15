@@ -22,6 +22,7 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 @StreamBot.on_message((filters.regex("login🔑") | filters.command("login")), group=4)
 async def login_handler(c: Client, m: Message):
+   while True:
     try:
         # Prompt the user to provide the first message from the DB Channel
         first_message = await client.ask(
@@ -42,7 +43,7 @@ async def login_handler(c: Client, m: Message):
         # Inform the user of an error if the message/link is not from the DB Channel
         await first_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
         continue
-
+     
     while True:
         try:
             # Prompt the user to provide the last message from the DB Channel
