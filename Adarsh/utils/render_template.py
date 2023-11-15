@@ -39,7 +39,7 @@ async def render_page(id, secure_hash):
    <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-        <button style="font-size: 20px; background-color: light blue; border: 2px solid black; border-radius: 0; padding: 10px; color: blue;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX Player</button>
+        <button style="font-size: 20px; background-color: sky blue; border: 2px solid black; border-radius: 0; padding: 10px; color: solid blue;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX Player</button>
         <button style="font-size: 20px; background-color: orange; border-radius: 0; padding: 10px;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button> &nbsp; <br>
         <p>&nbsp;</p>
         <button style="font-size: 20px; background-color: red; border-radius: 10px;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button> &nbsp <br>
