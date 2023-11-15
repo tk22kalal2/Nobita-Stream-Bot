@@ -22,6 +22,8 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 async def private_receive_handler(c: Client, m: Message):        
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+        await asyncio.sleep(1)
+        await log_msg.delete()
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
@@ -52,8 +54,7 @@ async def private_receive_handler(c: Client, m: Message):
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
                 [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
         )
-        await asyncio.sleep(1)
-        await log_msg.delete()
+        
         
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
