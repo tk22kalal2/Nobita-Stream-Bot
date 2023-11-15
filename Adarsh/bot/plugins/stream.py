@@ -43,12 +43,7 @@ async def private_receive_handler(c: Client, m: Message):
         <b>❇️  ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : @MovievillaYT</b>
         """
         
-        X = await log_msg.reply_text(text=f"{get_name(log_msg)} \n▶️{stream_link}", disable_web_page_preview=True, quote=True)
-        try:
-           await X.forward(chat_id=Var.DB_CHANNEL)
-        except Exception as e:
-           print(f"Error forwarding message to DB_CHANNEL: {e}")
-
+        await log_msg.reply_text(text=f"{get_name(log_msg)} \n{stream_link}", disable_web_page_preview=True, quote=True)        
         await m.reply_text(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
