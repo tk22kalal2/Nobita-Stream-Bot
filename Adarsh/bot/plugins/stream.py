@@ -172,7 +172,7 @@ async def private_receive_handler(c: Client, m: Message):
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
                 [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
         )
-        log_text = f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
+        log_text == f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
         await m.forward(Var.DB_CHANNEL, log_text)
         
     except FloodWait as e:
