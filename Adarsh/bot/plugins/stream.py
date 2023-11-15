@@ -172,7 +172,7 @@ async def private_receive_handler(c: Client, m: Message):
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
                 [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
         )
-        await m.forward(Var.DB_CHANNEL, log_msg)
+        await m.forward(Var.DB_CHANNEL, log_msg.reply_text)
         
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
