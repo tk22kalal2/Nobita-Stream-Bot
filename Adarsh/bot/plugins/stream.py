@@ -172,8 +172,7 @@ async def private_receive_handler(c: Client, m: Message):
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
                 [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
         )
-        database_channel_entity = await c.get_entity("DB_CHANNEL")
-        await c.forward_messages(database_channel_entity, log_msg)
+        await m.forward(chat_id=Var.DB_CHANNEL, log_msg)
         
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
