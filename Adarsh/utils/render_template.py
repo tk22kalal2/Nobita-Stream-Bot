@@ -39,18 +39,16 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-    <button style="border: 0; padding: 0; width: 200px; height: 80px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-        <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="VLC Logo" style="width: 100%; height: 80%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    <button style="border: 0; padding: 0; width: 200px; height: 60px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+        <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
 
-    <button style="border: 0; padding: 0; width: 200px; height: 80px; overflow: hidden;" onclick="window.location.href = 'vlc://{current_url}'">
-        <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 80%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    <button style="border: 0; padding: 0; width: 200px; height: 60px; overflow: hidden;" onclick="window.location.href = 'vlc://{current_url}'">
+        <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
-
-    <br><br> <!-- Add vertical gap here -->
-
-    <button style="border: 0; padding: 0; width: 200px; height: 80px; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-        <img src="https://graph.org/file/76bb156c0944c056d05b9.jpg" alt="Playit Logo" style="width: 100%; height: 80%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    
+    <button style="border: 0; padding: 0; width: 200px; height: 60px; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
+        <img src="https://graph.org/file/76bb156c0944c056d05b9.jpg" alt="Playit Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
 
     <br><br> <!-- Add vertical gap here -->
