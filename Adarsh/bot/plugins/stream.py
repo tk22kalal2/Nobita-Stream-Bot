@@ -144,22 +144,7 @@ async def batch(client: Client, message: Message):
     await process_messages(min(f_msg_id, s_msg_id), max(f_msg_id, s_msg_id))
 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
-async def private_receive_handler(c: Client, m: Message):
-    if MY_PASS:
-        # Your existing code...
-
-    if not await db.is_user_exist(m.from_user.id):
-        # Your existing code...
-
-    if Var.UPDATES_CHANNEL != "None":
-        try:
-            # Your existing code...
-        except UserNotParticipant:
-            # Your existing code...
-        except Exception as e:
-            await m.reply_text(str(e))
-            # Your existing code...
-
+async def private_receive_handler(c: Client, m: Message):        
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
