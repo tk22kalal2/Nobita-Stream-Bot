@@ -24,18 +24,11 @@ from typing import List
 # Define a dictionary to store the ongoing batch forwarding sessions
 batch_forward_sessions = {}
 
-@StreamBot.on_message(filters.private & filters.command('batch') & filters.forwarded)
+@StreamBot.on_message(filters.private & filters.command('batch'))
 async def start_batch_forward_session(c: Client, m: Message):
     try:
-        # Check if the forwarded message is a media message
-        if m.media and m.media.video:
-            # Start a new batch forwarding session for the user
-            user_id = m.from_user.id
-            batch_forward_sessions[user_id] = {'first_video': m}
-
-            await m.reply_text("First video received. Now, please forward the second video.")
-        else:
-            await m.reply_text("Please forward a video message to start the batch forwarding session.")
+        # Ask the user to forward the first video
+        await m.reply_text("Please forward the first video message to start the batch forwarding session.")
 
     except Exception as e:
         print(f"Error in start_batch_forward_session: {e}")
@@ -46,7 +39,15 @@ async def continue_batch_forward_session(c: Client, m: Message):
     try:
         # Check if the user is in a batch forwarding session
         user_id = m.from_user.id
-        if user_id in batch_forward_sessions and 'first_video' in batch_forward_sessions[user_id]:
+        if user_id in batch_forward_sessions and 'first_video' not in batch_forward_sessions[user_id]:
+            # Check if the forwarded message is a media message
+            if m.media and m.media.video:
+                # Start a new batch forwarding session for the user
+                batch_forward_sessions[user_id] = {'first_video': m}
+                await m.reply_text("First video received. Now, please forward the second video.")
+            else:
+                await m.reply_text("Please forward a video message to start the batch forwarding session.")
+        elif user_id in batch_forward_sessions and 'first_video' in batch_forward_sessions[user_id]:
             # Check if the forwarded message is a media message
             if m.media and m.media.video:
                 # Add the second video to the batch forwarding session
@@ -79,7 +80,6 @@ async def continue_batch_forward_session(c: Client, m: Message):
     except Exception as e:
         print(f"Error in continue_batch_forward_session: {e}")
         await m.reply_text("An error occurred during batch forwarding. Please try again later.")
-
     
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):        
