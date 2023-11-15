@@ -39,8 +39,9 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkblue; font-weight: bold;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX Player</button>
-        
+        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkblue; font-weight: bold;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+            <img src="https://graph.org/file/7b4dbee176ae1d20442db.jpg" alt="MX Player Logo" style="width: 30px; height: 30px; margin-right: 10px;">
+        </button>
         <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkred; font-weight: bold;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button>
         
         <br><br> <!-- Add vertical gap here -->
