@@ -46,8 +46,7 @@ async def login_handler(c: Client, m: Message):
         print(e)
 
 from typing import Tuple
-
-@StreamBot.on_message(filters.private & filters.user(ADMINS) & filters.command('batch'))
+@StreamBot.on_message((filters.private) & (filters.command('batch')) &  (filters.document | filters.video | filters.audio | filters.photo) , group=4)
 async def batch(client: Client, message: Message):
     # Function to process messages within a given range
     async def process_messages(start_id: int, end_id: int):
