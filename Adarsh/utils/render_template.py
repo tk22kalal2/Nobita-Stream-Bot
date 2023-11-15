@@ -45,7 +45,7 @@ async def render_page(id, secure_hash):
         
         <br><br> <!-- Add vertical gap here -->
         
-        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: orange;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button>&nbsp; <br>
+        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: solid orange;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button>&nbsp; <br>
         
         <br><br> <!-- Add vertical gap here -->
         
