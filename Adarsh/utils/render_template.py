@@ -39,10 +39,11 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-        <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: white; font-weight: bold; position: relative;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-            <img src="https://graph.org/file/7b4dbee176ae1d20442db.jpg" alt="MX Player Logo" style="width: 30px; height: 30px; margin-right: 10px;">
-            <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">MX PLAYER</span>
+        <button style="font-size: 0; border: 0; padding: 0; position: relative;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+            <img src="https://graph.org/file/7b4dbee176ae1d20442db.jpg" alt="MX Player Logo" style="width: 100%; height: auto;">
+            <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: white; font-weight: bold;">MX PLAYER</span>
         </button>
+
 
         <button style="font-size: 20px; background-color: rgba(169, 169, 169, 0.5); border: 2px solid black; border-radius: 0; padding: 10px; color: darkred; font-weight: bold;" onclick="window.location.href = 'vlc://{current_url}'">VLC player</button>
         
