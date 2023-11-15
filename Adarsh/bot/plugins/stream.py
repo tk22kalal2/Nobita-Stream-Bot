@@ -20,28 +20,28 @@ pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 
-@StreamBot.on_message((filters.regex("login🔑") | filters.command("login")) , group=4)
+@StreamBot.on_message((filters.regex("login🔑") | filters.command("login")), group=4)
 async def login_handler(c: Client, m: Message):
     try:
-            # Prompt the user to provide the first message from the DB Channel
-            first_message = await client.ask(
-                text="Forward the First Message from DB Channel (with Quotes)..\n\nor Send the DB Channel Post Link",
-                chat_id=message.from_user.id,
-                filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
-                timeout=60
-            )
-        except:
-            return  # Return if there's an exception (e.g., timeout)
+        # Prompt the user to provide the first message from the DB Channel
+        first_message = await client.ask(
+            text="Forward the First Message from DB Channel (with Quotes)..\n\nor Send the DB Channel Post Link",
+            chat_id=message.from_user.id,
+            filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
+            timeout=60
+        )
+    except:
+        return  # Return if there's an exception (e.g., timeout)
 
-        # Get the message ID from the provided message or link
-        f_msg_id = await get_message_id(client, first_message)
+    # Get the message ID from the provided message or link
+    f_msg_id = await get_message_id(client, first_message)
 
-        if f_msg_id:
-            break
-        else:
-            # Inform the user of an error if the message/link is not from the DB Channel
-            await first_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
-            continue
+    if f_msg_id:
+        break
+    else:
+        # Inform the user of an error if the message/link is not from the DB Channel
+        await first_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
+        continue
 
     while True:
         try:
@@ -75,6 +75,7 @@ async def login_handler(c: Client, m: Message):
     # Send the generated links to the user
     for stream_link in message_links:
         await message.reply(f"Here is a link for one of the messages:\n{stream_link}")
+
 
 from typing import Tuple
 @StreamBot.on_message((filters.private) & (filters.command('batch')) &  (filters.document | filters.video | filters.audio | filters.photo) , group=4)
