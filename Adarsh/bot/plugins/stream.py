@@ -23,27 +23,58 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 @StreamBot.on_message((filters.regex("login🔑") | filters.command("login")) , group=4)
 async def login_handler(c: Client, m: Message):
     try:
-        try:
-            ag = await m.reply_text("Now send me password.\n\n If You don't know check the MY_PASS Variable in heroku \n\n(You can use /cancel command to cancel the process)")
-            _text = await c.listen(m.chat.id, filters=filters.text, timeout=90)
-            if _text.text:
-                textp = _text.text
-                if textp == "/cancel":
-                   await ag.edit("Process Cancelled Successfully")
-                   return
-            else:
-                return
-        except TimeoutError:
-            await ag.edit("I can't wait more for password, try again")
-            return
-        if textp == MY_PASS:
-            await pass_db.add_user_pass(m.chat.id, textp)
-            ag_text = "yeah! you entered the password correctly"
+            # Prompt the user to provide the first message from the DB Channel
+            first_message = await client.ask(
+                text="Forward the First Message from DB Channel (with Quotes)..\n\nor Send the DB Channel Post Link",
+                chat_id=message.from_user.id,
+                filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
+                timeout=60
+            )
+        except:
+            return  # Return if there's an exception (e.g., timeout)
+
+        # Get the message ID from the provided message or link
+        f_msg_id = await get_message_id(client, first_message)
+
+        if f_msg_id:
+            break
         else:
-            ag_text = "Wrong password, try again"
-        await ag.edit(ag_text)
-    except Exception as e:
-        print(e)
+            # Inform the user of an error if the message/link is not from the DB Channel
+            await first_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
+            continue
+
+    while True:
+        try:
+            # Prompt the user to provide the last message from the DB Channel
+            second_message = await client.ask(
+                text="Forward the Last Message from DB Channel (with Quotes)..\nor Send the DB Channel Post link",
+                chat_id=message.from_user.id,
+                filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
+                timeout=60
+            )
+        except:
+            return  # Return if there's an exception (e.g., timeout)
+
+        # Get the message ID from the provided message or link
+        s_msg_id = await get_message_id(client, second_message)
+
+        if s_msg_id:
+            break
+        else:
+            # Inform the user of an error if the message/link is not from the DB Channel
+            await second_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
+            continue
+
+    # Generate a list of links for each message between the first and second message
+    message_links = []
+    for msg_id in range(min(f_msg_id, s_msg_id), max(f_msg_id, s_msg_id) + 1):
+        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        message_links.append(stream_link)
+
+    # Send the generated links to the user
+    for stream_link in message_links:
+        await message.reply(f"Here is a link for one of the messages:\n{stream_link}")
 
 from typing import Tuple
 @StreamBot.on_message((filters.private) & (filters.command('batch')) &  (filters.document | filters.video | filters.audio | filters.photo) , group=4)
