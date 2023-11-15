@@ -162,7 +162,12 @@ async def private_receive_handler(c: Client, m: Message):
         <b>❇️  ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : @MovievillaYT</b>
         """
         
-        await log_msg.reply_text(text=f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
+        X = await log_msg.reply_text(text=f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
+        try:
+           await X.forward(chat_id=Var.DB_CHANNEL)
+        except Exception as e:
+           print(f"Error forwarding message to DB_CHANNEL: {e}")
+
         await m.reply_text(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
@@ -172,7 +177,7 @@ async def private_receive_handler(c: Client, m: Message):
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
                 [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
         )
-        await m.forward(Var.DB_CHANNEL, {stream_link})
+        
         
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
