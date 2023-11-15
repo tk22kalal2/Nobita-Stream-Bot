@@ -52,7 +52,7 @@ async def private_receive_handler(c: Client, m: Message):
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
                 [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
         )
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(1)
         await log_msg.delete()
         
     except FloodWait as e:
