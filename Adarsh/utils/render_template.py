@@ -39,19 +39,18 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-    <button style="font-size: 0; border: 0; padding: 0; position: relative; width: 200px; height: 200px;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-        <img src="https://graph.org/file/7b4dbee176ae1d20442db.jpg" alt="MX Player Logo" style="width: 100%; height: auto;">
-        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: white; font-weight: bold;">MX PLAYER</span>
+    <button style="border: 0; padding: 0; width: 200px; height: 200px;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+        <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="VLC Logo" style="width: 100%; height: auto; border-radius: 0;">
     </button>
 
     <button style="border: 0; padding: 0; width: 200px; height: 200px;" onclick="window.location.href = 'vlc://{current_url}'">
-        <img src="https://graph.org/file/04975212d154e55472969.jpg" alt="VLC Logo" style="width: 100%; height: auto; border-radius: 0;">
+        <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: auto; border-radius: 0;">
     </button>
 
     <br><br> <!-- Add vertical gap here -->
 
     <button style="border: 0; padding: 0; width: 200px; height: 200px;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-        <img src="https://graph.org/file/f098afd1dd1715afcbc96.jpg" alt="Playit Logo" style="width: 100%; height: auto; border-radius: 0;">
+        <img src="https://graph.org/file/76bb156c0944c056d05b9.jpg" alt="Playit Logo" style="width: 100%; height: auto; border-radius: 0;">
     </button>
 
     <br><br> <!-- Add vertical gap here -->
