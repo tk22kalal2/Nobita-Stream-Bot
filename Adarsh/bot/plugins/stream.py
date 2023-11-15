@@ -19,15 +19,12 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
-async def delete_after_delay(log_msg, delay):
-    await asyncio.sleep(delay)
-    await log_msg.delete()
     
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):        
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-        asyncio.create_task(delete_after_delay(log_msg, 1))
+        await asyncio.sleep(0.5)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
 
@@ -43,7 +40,11 @@ async def private_receive_handler(c: Client, m: Message):
         <b>❇️  ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : @MovievillaYT</b>
         """
         
-        await log_msg.reply_text(text=f"{get_name(log_msg)} \n{stream_link}", disable_web_page_preview=True, quote=True)        
+        X = await log_msg.reply_text(text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
+        try:
+            await X.forward(chat_id=Var.DB_CHANNEL)
+        except Exception as e:
+            print(f"Error forwarding message to DB_CHANNEL: {e}")                 
         await m.reply_text(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
