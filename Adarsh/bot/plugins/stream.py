@@ -61,7 +61,7 @@ async def get_message_id(client, message):
         elif channel_id == client.db_channel.username:
             return msg_id
             
-@StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID) & filters.command('batch'))
+@StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID)) & filters.command('batch'))
 async def batch(client: Client, message: Message):
     while True:
         try:
