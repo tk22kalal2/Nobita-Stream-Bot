@@ -14,7 +14,7 @@ class Bot(Client):
 
     async def start(self):
         try:
-            db_channel = await self.get_chat(CHANNEL_ID)
+            db_channel = await self.get_chat(Var.DB_CHANNEL)
             self.db_channel = db_channel
             test_message = await self.send_message(
                 chat_id=db_channel.id,
@@ -30,7 +30,7 @@ class Bot(Client):
         except Exception as e:
             self.LOGGER(__name__).error(f"Error during Bot initialization: {e}")
             self.LOGGER(__name__).warning(
-                f"Make sure @{self.username} is an admin in the DB Channel, and double-check the CHANNEL_ID value. Current Value: {CHANNEL_ID}"
+                f"Make sure @{self.username} is an admin in the DB Channel, and double-check the CHANNEL_ID value. Current Value: {Var.DB_CHANNEL}"
             )
             return 
 
