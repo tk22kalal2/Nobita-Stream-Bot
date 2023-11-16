@@ -18,7 +18,76 @@ db = Database(Var.DATABASE_URL, Var.name)
 MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
-    
+
+@StreamBot.on_message(filters.private & filters.user(ADMINS) & filters.command('batch'))
+async def batch(client: Client, message: Message):
+    while True:
+        try:
+            # Prompt the user to provide the first message from the DB Channel
+            first_message = await client.ask(
+                text="Forward the First Message from DB Channel (with Quotes)..\n\nor Send the DB Channel Post Link",
+                chat_id=message.from_user.id,
+                filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
+                timeout=60
+            )
+        except:
+            return  # Return if there's an exception (e.g., timeout)
+
+        # Get the message ID from the provided message or link
+        f_msg_id = await get_message_id(client, first_message)
+
+        if f_msg_id:
+            break
+        else:
+            # Inform the user of an error if the message/link is not from the DB Channel
+            await first_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
+            continue
+
+    while True:
+        try:
+            # Prompt the user to provide the last message from the DB Channel
+            second_message = await client.ask(
+                text="Forward the Last Message from DB Channel (with Quotes)..\nor Send the DB Channel Post link",
+                chat_id=message.from_user.id,
+                filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
+                timeout=60
+            )
+        except:
+            return  # Return if there's an exception (e.g., timeout)
+
+        # Get the message ID from the provided message or link
+        s_msg_id = await get_message_id(client, second_message)
+
+        if s_msg_id:
+            break
+        else:
+            # Inform the user of an error if the message/link is not from the DB Channel
+            await second_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
+            continue
+
+    message_links = []
+    for msg_id in range(min(f_msg_id, s_msg_id), max(f_msg_id, s_msg_id) + 1):
+        try:
+            # Forward the message to BIN_CHANNEL
+            log_msg = await client.forward_messages(
+                chat_id=Var.BIN_CHANNEL,
+                from_chat_id=client.db_channel.id,
+                message_ids=msg_id,
+            )
+
+            # Generate links for the forwarded message
+            stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+            online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+            link = f"Here is a link for the forwarded message:\n{stream_link}\n{online_link}"
+            message_links.append(link)
+
+        except Exception as e:
+            print(f"Error forwarding message: {e}")
+
+    # Send the generated links to the user
+    for link in message_links:
+        await message.reply(link)
+
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):        
     try:
