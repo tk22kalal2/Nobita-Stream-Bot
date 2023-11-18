@@ -31,7 +31,7 @@ async def private_receive_handler(c: Client, m: Message):
         )
         
     else:
-        caption = m.caption.html if m.caption else m.video.file_name
+        caption = m.caption.html if m.caption else get_name(m.video)
     
     try:
         log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
