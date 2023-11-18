@@ -20,144 +20,7 @@ pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 from pyrogram import Client
-from pyrogram.errors import FloodWait
-
-class Bot(Client):
-    def __init__(self):
-        self.LOGGER = LOGGER
-        self.db_channel = None  # Initialize db_channel attribute
-
-    async def start(self):
-        try:
-            db_channel = await self.get_chat(Var.DB_CHANNEL)
-            self.db_channel = db_channel
-            test_message = await self.send_message(
-                chat_id=db_channel.id,
-                text="Test Message",
-                disable_notification=True
-            )
-            await test_message.delete()
-            self.LOGGER(__name__).info(
-                f"CHANNEL_ID Database detected!\n┌ Title: {db_channel.title}\n└ Chat ID: {db_channel.id}\n——"
-            )
-        except FloodWait as e:
-            self.LOGGER(__name__).warning(f"FloodWait: {e}")
-        except Exception as e:
-            self.LOGGER(__name__).error(f"Error during Bot initialization: {e}")
-            self.LOGGER(__name__).warning(
-                f"Make sure @{self.username} is an admin in the DB Channel, and double-check the CHANNEL_ID value. Current Value: {Var.DB_CHANNEL}"
-            )
-
-async def get_messages(client, message_ids):
-    messages = []
-    total_messages = 0
-    while total_messages != len(message_ids):
-        temb_ids = message_ids[total_messages : total_messages + 200]
-        try:
-            msgs = await client.get_messages(
-                chat_id=client.db_channel.id, message_ids=temb_ids
-            )
-        except FloodWait as e:
-            await asyncio.sleep(e.x)
-            msgs = await client.get_messages(
-                chat_id=client.db_channel.id, message_ids=temb_ids
-            )
-        except BaseException:
-            pass
-        total_messages += len(temb_ids)
-        messages.extend(msgs)
-    return messages
-
-
-async def get_message_id(client, message):
-    if (
-        message.forward_from_chat
-        and message.forward_from_chat.id == client.db_channel.id
-    ):
-        return message.forward_from_message_id
-    elif message.forward_from_chat or message.forward_sender_name or not message.text:
-        return 0
-    else:
-        pattern = "https://t.me/(?:c/)?(.*)/(\\d+)"
-        matches = re.match(pattern, message.text)
-        if not matches:
-            return 0
-        channel_id = matches.group(1)
-        msg_id = int(matches.group(2))
-        if channel_id.isdigit():
-            if f"-100{channel_id}" == str(client.db_channel.id):
-                return msg_id
-        elif channel_id == client.db_channel.username:
-            return msg_id
-            
-@StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID)) & filters.command('batch'))
-async def batch(client: Client, message: Message):
-    while True:
-        try:
-            # Prompt the user to provide the first message from the DB Channel
-            first_message = await client.ask(
-                text="Forward the First Message from DB Channel (with Quotes)..\n\nor Send the DB Channel Post Link",
-                chat_id=message.from_user.id,
-                filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
-                timeout=60
-            )
-        except:
-            return  # Return if there's an exception (e.g., timeout)
-
-        # Get the message ID from the provided message or link
-        f_msg_id = await get_message_id(client, first_message)
-
-        if f_msg_id:
-            break
-        else:
-            # Inform the user of an error if the message/link is not from the DB Channel
-            await first_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
-            continue
-
-    while True:
-        try:
-            # Prompt the user to provide the last message from the DB Channel
-            second_message = await client.ask(
-                text="Forward the Last Message from DB Channel (with Quotes)..\nor Send the DB Channel Post link",
-                chat_id=message.from_user.id,
-                filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
-                timeout=60
-            )
-        except:
-            return  # Return if there's an exception (e.g., timeout)
-
-        # Get the message ID from the provided message or link
-        s_msg_id = await get_message_id(client, second_message)
-
-        if s_msg_id:
-            break
-        else:
-            # Inform the user of an error if the message/link is not from the DB Channel
-            await second_message.reply("❌ Error\n\nthis Forwarded Post is not from my DB Channel or this Link is taken from DB Channel", quote=True)
-            continue
-
-    message_links = []
-    for msg_id in range(min(f_msg_id, s_msg_id), max(f_msg_id, s_msg_id) + 1):
-        try:
-            # Forward the message to BIN_CHANNEL
-            log_msg = await client.forward_messages(
-                chat_id=Var.BIN_CHANNEL,
-                from_chat_id=client.db_channel.id,
-                message_ids=msg_id,
-            )
-
-            # Generate links for the forwarded message
-            stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-            online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-            link = f"Here is a link for the forwarded message:\n{stream_link}\n{online_link}"
-            message_links.append(link)
-
-        except Exception as e:
-            print(f"Error forwarding message: {e}")
-
-    # Send the generated links to the user
-    for link in message_links:
-        await message.reply(link)
+from pyrogram.errors import FloodWait    
 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):
@@ -167,7 +30,7 @@ async def private_receive_handler(c: Client, m: Message):
             filename=m.video.file_name
         )
     else:
-        caption = get_name(m.video)
+        pass
     
     try:
         log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
