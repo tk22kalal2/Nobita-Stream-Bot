@@ -168,7 +168,7 @@ async def private_receive_handler(c: Client, m: Message):
                 
         X = await log_msg.reply_text(text=f"{get_caption(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
         try:
-            await X.forward(chat_id=Var.DB_CHANNEL)
+            await X.forward(chat_id=@FileXtera2_bot)
         except Exception as e:
             print(f"Error forwarding message to DB_CHANNEL: {e}")                 
         await m.reply_text(
