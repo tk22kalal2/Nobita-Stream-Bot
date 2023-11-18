@@ -24,14 +24,11 @@ from pyrogram.errors import FloodWait
 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):
-    log_msg = None
     if bool(CUSTOM_CAPTION) and bool(m.video):
         caption = CUSTOM_CAPTION.format(
             previouscaption="" if not m.caption else m.caption.html,
             filename=m.video.file_name
         )
-    else:
-        caption = get_name(log_msg)
     
     try:
         log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption if caption else "")
