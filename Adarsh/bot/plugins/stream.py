@@ -161,15 +161,14 @@ async def batch(client: Client, message: Message):
 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):
-    if bool(CUSTOM_CAPTION) and bool(m.document) and bool(m.video):
+    if bool(CUSTOM_CAPTION) and bool(m.video):
         caption = CUSTOM_CAPTION.format(
             previouscaption="" if not m.caption else m.caption.html,
-            video_filename=m.video.file_name,
-            document_filename=m.document.file_name
+            filename=m.video.file_name
         )
     else:
         # Set caption to file name if there is no caption
-        caption = m.document.file_name if m.document and not m.caption else ""
+        caption = m.video.file_name 
     
     try:
         log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
