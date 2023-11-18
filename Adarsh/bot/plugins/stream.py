@@ -11,7 +11,7 @@ from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from telethon.tl.types import InputPeerChannel
-from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
+from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size, get_caption
 db = Database(Var.DATABASE_URL, Var.name)
 
 
@@ -166,7 +166,7 @@ async def private_receive_handler(c: Client, m: Message):
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 
-        X = await log_msg.reply_text(text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
+        X = await log_msg.reply_text(text=f"{get_caption(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
         try:
             await X.forward(chat_id=Var.DB_CHANNEL)
         except Exception as e:
