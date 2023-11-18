@@ -31,7 +31,7 @@ async def private_receive_handler(c: Client, m: Message):
         )
     
     try:
-        log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption if caption else "")
+        log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 
