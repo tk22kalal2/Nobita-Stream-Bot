@@ -26,6 +26,7 @@ async def get_file_ids(client: Client, chat_id: int, id: int) -> Optional[FileId
     setattr(file_id, "file_size", getattr(media, "file_size", 0))
     setattr(file_id, "mime_type", getattr(media, "mime_type", ""))
     setattr(file_id, "file_name", getattr(media, "file_name", ""))
+    setattr(file_id, "caption", getattr(media, "caption", ""))
     setattr(file_id, "unique_id", file_unique_id)
     return file_id
 
