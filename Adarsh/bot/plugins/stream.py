@@ -29,6 +29,9 @@ async def private_receive_handler(c: Client, m: Message):
             previouscaption="" if not m.caption else m.caption.html,
             filename=m.video.file_name
         )
+        
+    else:
+        caption = msg.caption.html if msg.caption else ""
     
     try:
         log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
