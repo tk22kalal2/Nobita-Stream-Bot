@@ -11,7 +11,7 @@ from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from telethon.tl.types import InputPeerChannel
-from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size, get_caption
+from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
 
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
