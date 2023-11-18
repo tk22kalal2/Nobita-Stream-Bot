@@ -167,8 +167,8 @@ async def private_receive_handler(c: Client, m: Message):
             filename=m.video.file_name
         )
     else:
-        # Set caption to file name if there is no caption
-        caption = m.video.file_name 
+        log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL)
+        caption = get_name(log_msg)
     
     try:
         log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
