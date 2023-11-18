@@ -54,6 +54,10 @@ def get_name(media_msg: Message) -> str:
     media = get_media_from_message(media_msg)
     return getattr(media, 'file_name', "")
 
+def get_caption(media_msg: Message) -> str:
+    media = get_media_from_message(media_msg)
+    return getattr(media, 'caption', "")
+
 def get_media_file_size(m):
     media = get_media_from_message(m)
     return getattr(media, "file_size", 0)
