@@ -14,7 +14,7 @@ from telethon.tl.types import InputPeerChannel
 from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size, get_caption
 db = Database(Var.DATABASE_URL, Var.name)
 
-
+CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
@@ -160,9 +160,14 @@ async def batch(client: Client, message: Message):
         await message.reply(link)
 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
-async def private_receive_handler(c: Client, m: Message):        
+async def private_receive_handler(c: Client, m: Message):
+    if bool(CUSTOM_CAPTION) & bool(m.video):
+        caption = CUSTOM_CAPTION.format(previouscaption="" if not m.caption else m.caption.html, filename=m.video.file_name)
+    else:
+        caption = "" if not m.caption else m.caption.html
+    
     try:
-        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL, caption=caption)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 
@@ -173,7 +178,7 @@ async def private_receive_handler(c: Client, m: Message):
             print(f"Error forwarding message to DB_CHANNEL: {e}")                 
         await m.reply_text(
             text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
-        )       
+        )    
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
