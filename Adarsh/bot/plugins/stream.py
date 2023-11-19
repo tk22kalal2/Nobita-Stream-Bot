@@ -142,17 +142,16 @@ async def batch(client: Client, message: Message):
                 
                 X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
                 try:
-                    await X.forward(chat_id=Var.CB_CHANNEL)
+                    await X.forward(chat_id=Var.DB_CHANNEL)
                     await asyncio.sleep(0.5)
                 except Exception as e:
-                    print(f"Error forwarding message to CB_CHANNEL: {e}")                 
+                    print(f"Error forwarding message to DB_CHANNEL: {e}")                 
                     await msg.reply_text(
                         text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
                     )    
             except FloodWait as e:
                 print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
-                await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
                 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):
