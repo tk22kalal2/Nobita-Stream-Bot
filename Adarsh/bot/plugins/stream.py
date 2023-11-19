@@ -171,7 +171,7 @@ async def private_receive_handler(c: Client, m: Message):
                 
         X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
         try:
-            await X.forward('@tk1234abcd')
+            await X.forward('@abcd123pavo')
         except Exception as e:
             print(f"Error forwarding message to DB_CHANNEL: {e}")                 
         await m.reply_text(
