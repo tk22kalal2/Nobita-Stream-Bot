@@ -171,7 +171,7 @@ async def private_receive_handler(c: Client, m: Message):
         
         X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
 
-        members = await c.get_chat_members(Var.DB_CHANNEL)
+        members = c.get_chat_members(Var.DB_CHANNEL)
 
         # Forward X to all users in Var.DB_CHANNEL
         if hasattr(members, '__aiter__'):  # Check if it's an async generator
