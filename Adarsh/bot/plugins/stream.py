@@ -13,6 +13,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from telethon.tl.types import InputPeerChannel
 from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
+from helper_func import encode, get_message_id, decode, get_messages
 
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 MY_PASS = os.environ.get("MY_PASS", None)
