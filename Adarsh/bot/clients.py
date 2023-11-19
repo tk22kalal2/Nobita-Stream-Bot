@@ -15,10 +15,6 @@ async def initialize_clients():
         print("No additional clients found, using default client")
         return
         
-    def __init__(self, db_channel, *args, **kwargs):
-        self.db_channel = db_channel
-        super().__init__(*args, **kwargs)
-        
     async def start_client(client_id, token):
         try:
             print(f"Starting - Client {client_id}")
