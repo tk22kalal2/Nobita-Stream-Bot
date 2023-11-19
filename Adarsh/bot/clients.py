@@ -7,33 +7,6 @@ from pyrogram import Client
 from Adarsh.utils.config_parser import TokenParser
 from . import multi_clients, work_loads, StreamBot
 
-class Bot(Client):
-    def __init__(self):
-        self.LOGGER = LOGGER
-        self.db_channel = None  # Initialize db_channel attribute
-
-    async def start(self):
-        try:
-            db_channel = await self.get_chat(Var.DB_CHANNEL)
-            self.db_channel = db_channel
-            test_message = await self.send_message(
-                chat_id=db_channel.id,
-                text="Test Message",
-                disable_notification=True
-            )
-            await test_message.delete()
-            self.LOGGER(__name__).info(
-                f"CHANNEL_ID Database detected!\n┌ Title: {db_channel.title}\n└ Chat ID: {db_channel.id}\n——"
-            )
-        except FloodWait as e:
-            self.LOGGER(__name__).warning(f"FloodWait: {e}")
-        except Exception as e:
-            self.LOGGER(__name__).error(f"Error during Bot initialization: {e}")
-            self.LOGGER(__name__).warning(
-                f"Make sure @{self.username} is an admin in the DB Channel, and double-check the CHANNEL_ID value. Current Value: {Var.DB_CHANNEL}"
-            )
-            return 
-
 async def initialize_clients():
     multi_clients[0] = StreamBot
     work_loads[0] = 0
