@@ -14,7 +14,11 @@ async def initialize_clients():
     if not all_tokens:
         print("No additional clients found, using default client")
         return
-    
+        
+    def __init__(self, db_channel, *args, **kwargs):
+        self.db_channel = db_channel
+        super().__init__(*args, **kwargs)
+        
     async def start_client(client_id, token):
         try:
             print(f"Starting - Client {client_id}")
@@ -26,6 +30,7 @@ async def initialize_clients():
                 api_id=Var.API_ID,
                 api_hash=Var.API_HASH,
                 bot_token=token,
+                db_channel=Var.DB_CHANNEL,
                 sleep_threshold=Var.SLEEP_THRESHOLD,
                 no_updates=True,
                 in_memory=True
