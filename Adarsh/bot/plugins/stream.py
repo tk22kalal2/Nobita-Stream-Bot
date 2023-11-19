@@ -135,24 +135,37 @@ async def batch(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                log_msg = await msg.forward(chat_id=Var.BIN_CHANNEL)
+                log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
                 await asyncio.sleep(0.5)
                 stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                
                 X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
-                try:
-                    await X.forward('@tk1234abcd')
-                    await asyncio.sleep(0.5)
-                except Exception as e:
-                    print(f"Error forwarding message to @tk1234abcd: {e}")                 
-                    await msg.reply_text(
-                        text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
-                    )    
+                members = c.get_chat_members(Var.DB_CHANNEL)
+                # Forward X to all users in Var.DB_CHANNEL
+                if hasattr(members, '__aiter__'):  # Check if it's an async generator
+                    async for member in members:
+                        try:
+                            await X.forward(member.user.id)
+                            await asyncio.sleep(0.5)
+                        except FloodWait as e:
+                            print(f"Sleeping for {str(e.x)}s")
+                            await asyncio.sleep(e.x)
+                        except Exception as e:
+                            print(f"Error forwarding message to user {member.user.id}: {e}")
+                else:  # If it's a list (Pyrogram version 2.0.34 and later)
+                    for member in members:
+                        try:
+                            await X.forward(member.user.id)
+                            await asyncio.sleep(0.5)
+                        except FloodWait as e:
+                            print(f"Sleeping for {str(e.x)}s")
+                            await asyncio.sleep(e.x)
+                        except Exception as e:
+                            print(f"Error forwarding message to user {member.user.id}: {e}")
             except FloodWait as e:
                 print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
-                
+                            
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)    
 async def private_receive_handler(c: Client, m: Message):
     if bool(CUSTOM_CAPTION) and bool(m.video):
