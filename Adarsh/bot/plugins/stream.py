@@ -23,7 +23,7 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 from pyrogram import Client
 from pyrogram.errors import FloodWait
 
-@StreamBot.on_message(filters.private & filters.user(ADMINS) & filters.command('batch'))
+@StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID)) & filters.command('batch'))
 async def batch(client: Client, message: Message):
     while True:
         try:
