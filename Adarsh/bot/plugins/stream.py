@@ -173,7 +173,7 @@ async def private_receive_handler(c: Client, m: Message):
         X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
 
         # Forward X to all users in Var.DB_CHANNEL
-        async for member in client.iter_chat_members(Var.DB_CHANNEL):
+        async for member in c.iter_chat_members(Var.DB_CHANNEL):
             try:
                 await X.forward(member.user.id)
                 await asyncio.sleep(0.5)
