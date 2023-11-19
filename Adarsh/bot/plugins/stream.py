@@ -120,10 +120,7 @@ async def batch(client: Client, message: Message):
         except Exception as e:
             print(f"Error fetching messages: {e}")
             await message.reply_text("Something went wrong..!")
-            return
-
-        
-        snt_msgs = []
+            return        
 
         for msg in messages:
 
@@ -138,7 +135,7 @@ async def batch(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                log_msg = await msg.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
+                log_msg = await msg.forward(chat_id=Var.BIN_CHANNEL)
                 stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 
@@ -153,7 +150,7 @@ async def batch(client: Client, message: Message):
             except FloodWait as e:
                 print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
-                await msg.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
+                await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
                 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):
