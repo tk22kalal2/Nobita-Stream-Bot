@@ -165,7 +165,7 @@ async def private_receive_handler(c: Client, m: Message):
         caption = m.caption.html if m.caption else get_name(m.video)
     
     try:
-        log_msg = await msg.forward(chat_id=Var.BIN_CHANNEL)
+        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         await asyncio.sleep(0.5)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
