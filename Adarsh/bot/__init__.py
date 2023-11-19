@@ -4,7 +4,12 @@ import pyromod.listen
 from ..vars import Var
 from os import getcwd
 
+def __init__(self, db_channel, *args, **kwargs):
+        self.db_channel = db_channel
+        super().__init__(*args, **kwargs)
+    
 StreamBot = Client(
+    db_channel=Var.DB_CHANNEL,
     name='Web Streamer',
     api_id=Var.API_ID,
     api_hash=Var.API_HASH,
