@@ -3,7 +3,7 @@ from pyrogram import Client
 import pyromod.listen
 from ..vars import Var
 from os import getcwd
-from . import CustomClient  # Assuming custom_client.py is in the same directory
+from .custom_client import CustomClient
 
 StreamBot = CustomClient(
     db_channel=Var.DB_CHANNEL,
@@ -14,6 +14,7 @@ StreamBot = CustomClient(
     sleep_threshold=Var.SLEEP_THRESHOLD,
     workers=Var.WORKERS
 )
+
 
 multi_clients = {}
 work_loads = {}
