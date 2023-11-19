@@ -138,21 +138,22 @@ async def batch(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
-                              protect_content=PROTECT_CONTENT)
+                log_msg = await msg.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
+                stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+                online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+                
+                X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
                 try:
-                    await snt_msg.forward(chat_id='6531497488')
-                    await asyncio.sleep(1)
-                    snt_msgs.append(snt_msg)
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
-                                  protect_content=PROTECT_CONTENT)
-                    snt_msgs.append(snt_msg)
+                    await X.forward(chat_id=Var.DB_CHANNEL)
                 except Exception as e:
-                    print(f"Error forwarding message: {e}")
-            except Exception as e:
-                print(f"Error copying message: {e}")
+                    print(f"Error forwarding message to DB_CHANNEL: {e}")                 
+                    await msg.reply_text(
+                        text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
+                    )    
+            except FloodWait as e:
+                print(f"Sleeping for {str(e.x)}s")
+                await asyncio.sleep(e.x)
+                await msg.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
                 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)    
 async def private_receive_handler(c: Client, m: Message):
