@@ -142,10 +142,10 @@ async def batch(client: Client, message: Message):
                 
                 X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
                 try:
-                    await X.forward(chat_id=Var.DB_CHANNEL2)
+                    await X.forward(chat_id=Var.DB_CHANNELK)
                     await asyncio.sleep(0.5)
                 except Exception as e:
-                    print(f"Error forwarding message to DB_CHANNEL2: {e}")                 
+                    print(f"Error forwarding message to DB_CHANNELK: {e}")                 
                     await msg.reply_text(
                         text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
                     )    
