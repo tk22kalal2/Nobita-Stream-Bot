@@ -3,12 +3,9 @@ from pyrogram import Client
 import pyromod.listen
 from ..vars import Var
 from os import getcwd
+from .bot import CustomClient  # Assuming custom_client.py is in the same directory
 
-def __init__(self, db_channel, *args, **kwargs):
-        self.db_channel = db_channel
-        super().__init__(*args, **kwargs)
-    
-StreamBot = Client(
+StreamBot = CustomClient(
     db_channel=Var.DB_CHANNEL,
     name='Web Streamer',
     api_id=Var.API_ID,
