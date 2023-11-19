@@ -140,7 +140,7 @@ async def batch(client: Client, message: Message):
                 stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
-                members = clint.get_chat_members(Var.DB_CHANNEL)
+                members = client.get_chat_members(Var.DB_CHANNEL)
                 # Forward X to all users in Var.DB_CHANNEL
                 if hasattr(members, '__aiter__'):  # Check if it's an async generator
                     async for member in members:
