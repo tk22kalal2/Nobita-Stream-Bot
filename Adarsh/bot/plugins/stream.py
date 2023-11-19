@@ -16,6 +16,12 @@ db = Database(Var.DATABASE_URL, Var.name)
 from helper_func import encode, get_message_id, decode, get_messages
 
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
+#set True if you want to prevent users from forwarding files from bot
+PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "True") == "True" else False
+
+#Set true if you want Disable your Channel Posts Share button
+DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
+
 MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
