@@ -165,22 +165,29 @@ async def private_receive_handler(c: Client, m: Message):
         caption = m.caption.html if m.caption else get_name(m.video)
     
     try:
-        log_msg = await c.send_message(chat_id=Var.BIN_CHANNEL, text=caption)
+        log_msg = await msg.forward(chat_id=Var.BIN_CHANNEL)
+        await asyncio.sleep(0.5)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                
+        
         X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
-        try:
-            await X.forward('@abcd123pavo')
-        except Exception as e:
-            print(f"Error forwarding message to DB_CHANNEL: {e}")                 
-        await m.reply_text(
-            text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
-        )    
+
+        # Forward X to all users in Var.DB_CHANNEL
+        async for member in client.iter_chat_members(Var.DB_CHANNEL):
+            try:
+                await X.forward(member.user.id)
+                await asyncio.sleep(0.5)
+            except FloodWait as e:
+                print(f"Sleeping for {str(e.x)}s")
+                await asyncio.sleep(e.x)
+            except Exception as e:
+                print(f"Error forwarding message to user {member.user.id}: {e}")
+
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
-        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
+                        
+    
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
     if MY_PASS:
