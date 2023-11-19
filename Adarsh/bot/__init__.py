@@ -3,7 +3,7 @@ from pyrogram import Client
 import pyromod.listen
 from ..vars import Var
 from os import getcwd
-from .bot import CustomClient  # Assuming custom_client.py is in the same directory
+from . import CustomClient  # Assuming custom_client.py is in the same directory
 
 StreamBot = CustomClient(
     db_channel=Var.DB_CHANNEL,
