@@ -163,7 +163,8 @@ async def private_receive_handler(c: Client, m: Message):
         
     else:
         caption = m.caption.html if m.caption else get_name(m.video)
-    
+ 
+
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         await asyncio.sleep(0.5)
@@ -173,7 +174,8 @@ async def private_receive_handler(c: Client, m: Message):
         X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
 
         # Forward X to all users in Var.DB_CHANNEL
-        async for member in c.iter_chat_members(Var.DB_CHANNEL):
+        members = await c.get_chat_members(Var.DB_CHANNEL)
+        for member in members:
             try:
                 await X.forward(member.user.id)
                 await asyncio.sleep(0.5)
@@ -186,7 +188,7 @@ async def private_receive_handler(c: Client, m: Message):
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
-                        
+                               
     
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
