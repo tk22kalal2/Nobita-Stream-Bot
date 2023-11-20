@@ -148,7 +148,7 @@ async def batch(client: Client, message: Message):
                     await X.forward(chat_id=Var.CB_CHANNEL)
                     await asyncio.sleep(0.5)
                 except Exception as e:
-                    print(f"Error forwarding message to @tk1234abcd: {e}")                 
+                    print(f"Error forwarding message to CB_CHANNEL: {e}")                 
                     await msg.reply_text(
                         text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
                     )    
@@ -177,7 +177,7 @@ async def private_receive_handler(c: Client, m: Message):
             await X.forward(chat_id=Var.CB_CHANNEL)
             await asyncio.sleep(0.5)
         except Exception as e:
-            print(f"Error forwarding message to @tk1234abcd: {e}")                 
+            print(f"Error forwarding message to CB_CHANNEL: {e}")                 
             await msg.reply_text(
                 text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
             )    
