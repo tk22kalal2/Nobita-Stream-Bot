@@ -16,6 +16,7 @@ class Var(object):
     WORKERS = int(getenv('WORKERS', '4'))
     BIN_CHANNEL = int(getenv('BIN_CHANNEL', ''))
     DB_CHANNEL = int(getenv('DB_CHANNEL', ''))
+    CB_CHANNEL = int(getenv('CB_CHANNEL', ''))
     DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
     PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "True") == "True" else False
     CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
