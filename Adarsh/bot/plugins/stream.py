@@ -165,23 +165,22 @@ async def private_receive_handler(c: Client, m: Message):
         caption = m.caption.html if m.caption else get_name(m.video)
 
     try:
-        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+        log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
         await asyncio.sleep(0.5)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                
-        X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
+        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=stream_link)]])
+        await log_msg.edit_reply_markup(reply_markup)
+        X = await m.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)    
         try:
             await X.forward(chat_id=Var.CB_CHANNEL)
             await asyncio.sleep(0.5)
         except Exception as e:
-            print(f"Error forwarding message to CB_CHANNEL: {e}")                 
-            await msg.reply_text(
-                text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
-            )    
+            print(f"Error forwarding message to CB_CHANNEL: {e}")                                     
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
-        await asyncio.sleep(e.x)        
+        await asyncio.sleep(e.x)
+    
                             
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
