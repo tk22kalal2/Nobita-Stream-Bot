@@ -168,22 +168,22 @@ async def private_receive_handler(c: Client, m: Message):
 
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-                await asyncio.sleep(0.5)
-                stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        await asyncio.sleep(0.5)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 
-                X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
-                try:
-                    await X.forward(chat_id=Var.CB_CHANNEL)
-                    await asyncio.sleep(0.5)
-                except Exception as e:
-                    print(f"Error forwarding message to @tk1234abcd: {e}")                 
-                    await msg.reply_text(
-                        text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
-                    )    
-            except FloodWait as e:
-                print(f"Sleeping for {str(e.x)}s")
-                await asyncio.sleep(e.x)        
+        X = await log_msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
+        try:
+            await X.forward(chat_id=Var.CB_CHANNEL)
+            await asyncio.sleep(0.5)
+        except Exception as e:
+            print(f"Error forwarding message to @tk1234abcd: {e}")                 
+            await msg.reply_text(
+                text=f"{get_name(log_msg)} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True
+            )    
+    except FloodWait as e:
+        print(f"Sleeping for {str(e.x)}s")
+        await asyncio.sleep(e.x)        
                             
 @StreamBot.on_message(filters.channel & ~filters.group & (filters.document | filters.video | filters.photo)  & ~filters.forwarded, group=-1)
 async def channel_receive_handler(bot, broadcast):
