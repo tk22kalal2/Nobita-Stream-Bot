@@ -43,7 +43,7 @@ async def render_page(id, secure_hash):
         <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="MX PLAYER Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
 
-    <button style="border: 0; padding: 0; width: 200px; height: 60px; overflow: hidden;" onclick="window.location.href = 'vlc://{current_url}'">
+    <button style="border: 0; padding: 0; width: 200px; height: 60px; overflow: hidden; background-color: #ADD8E6;" onclick="window.location.href = 'vlc://{current_url}'">
         <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
     
