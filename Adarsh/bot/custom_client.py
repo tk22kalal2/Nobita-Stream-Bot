@@ -5,8 +5,8 @@ from pyrogram.errors import FloodWait
 import asyncio
 
 class CustomClient(Client):
-    def __init__(self, bin_channel, *args, **kwargs):
-        self.bin_channel = bin_channel
+    def __init__(self, db_channel, *args, **kwargs):
+        self.db_channel = db_channel
         super().__init__(*args, **kwargs)
 
     async def forward_message_to_all_users(self, message):
