@@ -139,7 +139,7 @@ async def batch(client: Client, message: Message):
                 await asyncio.sleep(0.5)
                 stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                X = await log_msg.reply_text(text=f"HELLO DOCTORS ✅ \nPAVOLADDER FREE MBBS CHANNEL IS BACK AGAIN \n✅ GET FREEE STUFF ALL MBBS MATERIAL \n✅ FREE PREPLADDER V5 VIDEOS AND NOTES LATEST \n✅ADD YOUR FRIENDS \n✅ SEND LINK IN GROUPS \n✅JOIN THE BOT✅👇 \n@Pavoladder2_bot \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
+                X = await log_msg.reply_text(text=f"HELLO DOCTORS ✅ \n\nPAVOLADDER FREE MBBS CHANNEL IS BACK AGAIN \n\n✅ GET FREEE STUFF ALL MBBS MATERIAL \n\n✅ FREE PREPLADDER V5 VIDEOS AND NOTES LATEST \n\n✅ADD YOUR FRIENDS \n\n✅ SEND LINK IN GROUPS \n\n✅JOIN THE BOT✅👇 \n\n@Pavoladder2_bot \n\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)
                 members = client.get_chat_members(Var.DB_CHANNEL)
                 # Forward X to all users in Var.DB_CHANNEL
                 if hasattr(members, '__aiter__'):  # Check if it's an async generator
@@ -160,6 +160,8 @@ async def batch(client: Client, message: Message):
                         except FloodWait as e:
                             print(f"Sleeping for {str(e.x)}s")
                             await asyncio.sleep(e.x)
+                        except errors.PeerIdInvalid as e:
+                            print(f"Skipping invalid user ID: {e}")
                         except Exception as e:
                             print(f"Error forwarding message to user {member.user.id}: {e}")
             except FloodWait as e:
