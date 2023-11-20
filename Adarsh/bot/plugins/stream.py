@@ -146,7 +146,7 @@ async def batch(client: Client, message: Message):
                     async for member in members:
                         try:
                             await X.forward(member.user.id)
-                            await CB_CHANNEL.invite_member(member.user.id)
+                            await Var.CB_CHANNEL.invite_member(member.user.id)
                             await asyncio.sleep(0.5)
                         except FloodWait as e:
                             print(f"Sleeping for {str(e.x)}s")
@@ -157,7 +157,7 @@ async def batch(client: Client, message: Message):
                     for member in members:
                         try:
                             await X.forward(member.user.id)
-                            await CB_CHANNEL.invite_member(member.user.id)
+                            await Var.CB_CHANNEL.invite_member(member.user.id)
                             await asyncio.sleep(0.5)
                         except FloodWait as e:
                             print(f"Sleeping for {str(e.x)}s")
