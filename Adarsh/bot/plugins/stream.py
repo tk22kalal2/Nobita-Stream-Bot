@@ -144,12 +144,7 @@ async def batch(client: Client, message: Message):
                 online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=stream_link)]])
                 await log_msg.edit_reply_markup(reply_markup)
-                X = await msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)    
-                try:
-                    await X.forward(chat_id=Var.CB_CHANNEL)
-                    await asyncio.sleep(0.5)
-                except Exception as e:
-                    print(f"Error forwarding message to CB_CHANNEL: {e}")                                     
+                X = await msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)                                                         
             except FloodWait as e:
                 print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
@@ -171,12 +166,7 @@ async def private_receive_handler(c: Client, m: Message):
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=stream_link)]])
         await log_msg.edit_reply_markup(reply_markup)
-        X = await m.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)    
-        try:
-            await X.forward(chat_id=Var.CB_CHANNEL)
-            await asyncio.sleep(0.5)
-        except Exception as e:
-            print(f"Error forwarding message to CB_CHANNEL: {e}")                                     
+        X = await m.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)                                         
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
