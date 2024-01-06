@@ -30,13 +30,23 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
-from pyrogram import Client
-from pyrogram.errors import FloodWait
 
 @StreamBot.on_message(filters.private & filters.incoming & filters.user(list(Var.OWNER_ID)))
 async def channel_receive_handler(bot, message):
-    # Forward the message to the specified channel
-    await message.copy(chat_id=Var.CB_CHANNEL)
+    channel_id = Var.CN_CHANNEL
+
+    # Get all the users in the specified channel
+    channel_members = await bot.get_chat_members(channel_id)
+
+    # Iterate through the members and forward the message to each user
+    for member in channel_members:
+        user_id = member.user.id
+
+        try:
+            # Forward the message to the current user in the channel
+            await message.copy(chat_id=user_id)
+        except Exception as e:
+            print(f"Error forwarding message to user {user_id}: {e}")
 
 @StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID)) & filters.command('batch'))
 async def batch(client: Client, message: Message):
