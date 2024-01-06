@@ -36,7 +36,7 @@ from pyrogram.errors import FloodWait
 @StreamBot.on_message(filters.private & filters.incoming & filters.user(list(Var.OWNER_ID)))
 async def channel_receive_handler(bot, message):
     # Forward the message to the specified channel
-    await message.copy(chat_id=Var.BIN_CHANNEL)
+    await message.copy(chat_id=Var.CB_CHANNEL)
 
 @StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID)) & filters.command('batch'))
 async def batch(client: Client, message: Message):
