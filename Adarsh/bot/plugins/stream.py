@@ -164,7 +164,7 @@ async def private_receive_handler(c: Client, m: Message):
         await asyncio.sleep(0.5)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=stream_link)]])
+        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
         await log_msg.edit_reply_markup(reply_markup)
         X = await m.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)                                         
     except FloodWait as e:
