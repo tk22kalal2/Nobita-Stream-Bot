@@ -30,28 +30,6 @@ MY_PASS = os.environ.get("MY_PASS", None)
 pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
-from pyrogram import filters
-import asyncio
-
-@StreamBot.on_message(filters.private & filters.incoming & filters.user(list(Var.OWNER_ID)))
-async def channel_receive_handler(bot, message):
-    channel_id = Var.DB_CHANNEL
-
-    # Get all the users in the specified channel
-    try:
-        async for member in bot.iter_chat_members(channel_id):
-            user_id = member.user.id
-
-            try:
-                # Forward the message to the current user in the channel
-                await message.copy(chat_id=user_id)
-            except Exception as e:
-                print(f"Error forwarding message to user {user_id}: {e}")
-
-    except Exception as e:
-        print(f"Error getting channel members: {e}")
-
-
 
 @StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID)) & filters.command('batch'))
 async def batch(client: Client, message: Message):
