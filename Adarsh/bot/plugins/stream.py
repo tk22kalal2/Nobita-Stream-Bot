@@ -33,7 +33,7 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 @StreamBot.on_message(filters.private & filters.incoming & filters.user(list(Var.OWNER_ID)))
 async def channel_receive_handler(bot, message):
-    channel_id = Var.CN_CHANNEL
+    channel_id = Var.CB_CHANNEL
 
     # Get all the users in the specified channel
     channel_members = await bot.get_chat_members(channel_id)
