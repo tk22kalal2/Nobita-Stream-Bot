@@ -33,7 +33,7 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 from pyrogram import Client
 from pyrogram.errors import FloodWait
 
-@StreamBot.on_message(filters.private & filters.incoming & filters.user(list(Var.OWNER_ID)))
+@StreamBot.on_message(filters.private & filters.incoming))
 async def channel_receive_handler(bot, message):
     # Forward the message to the specified channel
     await message.copy(chat_id=Var.BIN_CHANNEL)
