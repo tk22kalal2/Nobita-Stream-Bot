@@ -40,12 +40,9 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-    <button class="magnet" onclick="vlc_player()" style="width: 240px; height: 50px;">
-        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER">
-    Watch in VLC PLAYER
-    </button>
+    
     <button class="magnet" onclick="vlc_player()" style="width: 240px; height: 50px; text-align: left;">
-        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER" style="width: 30px; height: 30px; margin-right: 10px;">
+        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER" style="width: 40px; height: 40px; margin-right: 10px;">
     Watch in VLC PLAYER
     </button>
 
