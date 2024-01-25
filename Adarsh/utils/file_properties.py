@@ -57,7 +57,7 @@ def get_name(media_msg: Message) -> str:
     # If file_name is absent, use the caption as a fallback
     if not file_name and media_msg.caption:
         return media_msg.caption.html
-    elif not media_msg.caption:
+    elif not media_msg.caption.html and media_msg.message_id:
         # If both file_name and caption are absent, assign a numbered name
         return f"{media_msg.message_id}"
     else:
