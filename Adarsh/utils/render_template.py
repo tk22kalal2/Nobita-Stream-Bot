@@ -39,23 +39,13 @@ async def render_page(id, secure_hash):
     
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
-    <center>
-    
-    <button class="magnet" onclick="vlc_player()" style="width: 240px; height: 50px; text-align: left;">
-        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER" style="width: 40px; height: 40px; margin-right: 10px;">
-    Watch in VLC PLAYER
+    <center>    
+    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+        <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="MX PLAYER Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
-    <button class="magnet" onclick="vlc_player()" style="width: 240px; height: 50px; text-align: left; position: relative;">
-        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="VLC PLAYER" style="width: 40px; height: 40px; margin-right: 10px; position: absolute; top: 50%; transform: translateY(-50%);">
-    <span style="display: inline-block; font-weight: bold;">VLC PLAYER</span>
-    </button>
-
-
-    
-
-    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden; background-color: #ADD8E6;" onclick="window.location.href = 'vlc://{current_url}'">
-        <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-    </button>
+    <button style="border: 0; padding: 0; width: 200px; height: 50px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+        <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    </button>    
     
     <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
         <img src="https://graph.org/file/76bb156c0944c056d05b9.jpg" alt="Playit Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
@@ -63,7 +53,7 @@ async def render_page(id, secure_hash):
 
     <br><br> <!-- Add vertical gap here -->
         
-    <button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
+    <button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>    
     </center>
 </p>
     
