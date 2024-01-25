@@ -161,7 +161,7 @@ async def private_receive_handler(c: Client, m: Message):
     try:
         log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
         await asyncio.sleep(0.5)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(caption)}?hash={get_hash(log_msg)}"
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
         await log_msg.edit_reply_markup(reply_markup)
