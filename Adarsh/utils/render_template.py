@@ -44,10 +44,12 @@ async def render_page(id, secure_hash):
         <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER">
     Watch in VLC PLAYER
     </button>
-    
-    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-        <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="MX PLAYER Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    <button class="magnet" onclick="vlc_player()" style="width: 240px; height: 50px; text-align: left;">
+        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER" style="width: 30px; height: 30px; margin-right: 10px;">
+    Watch in VLC PLAYER
     </button>
+
+    
 
     <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden; background-color: #ADD8E6;" onclick="window.location.href = 'vlc://{current_url}'">
         <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
