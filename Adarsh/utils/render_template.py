@@ -45,6 +45,11 @@ async def render_page(id, secure_hash):
         <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER" style="width: 40px; height: 40px; margin-right: 10px;">
     Watch in VLC PLAYER
     </button>
+    <button class="magnet" onclick="vlc_player()" style="width: 240px; height: 50px; text-align: left; position: relative;">
+        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="VLC PLAYER" style="width: 40px; height: 40px; margin-right: 10px; position: absolute; top: 50%; transform: translateY(-50%);">
+    <span style="display: inline-block; font-weight: bold;">VLC PLAYER</span>
+    </button>
+
 
     
 
