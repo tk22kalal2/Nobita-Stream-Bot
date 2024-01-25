@@ -52,11 +52,7 @@ def get_hash(media_msg: Message) -> str:
 
 def get_name(media_msg: Message) -> str:
     media = get_media_from_message(media_msg)
-    file_name = getattr(media, 'file_name', "")
-
-    # Check if the media_msg is an image and has a caption
-    if isinstance(media, Image) and media_msg.caption:
-        return media_msg.caption.html
+    file_name = getattr(media, 'file_name', "")    
 
     # Check if the media_msg is a video and has a caption
     elif isinstance(media, Video) and media_msg.caption:
