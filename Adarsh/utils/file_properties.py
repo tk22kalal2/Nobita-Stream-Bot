@@ -53,12 +53,16 @@ def get_hash(media_msg: Message) -> str:
 def get_name(media_msg: Message) -> str:
     media = get_media_from_message(media_msg)
     file_name = getattr(media, 'file_name', "")
-    
+
     # If file_name is absent, use the caption as a fallback
     if not file_name and media_msg.caption:
         return media_msg.caption.html
+    elif not file_name:
+        # If both file_name and caption are absent, assign a numbered name
+        return f"{media_msg.message_id}"
     else:
         return file_name
+
         
 def get_media_file_size(m):
     media = get_media_from_message(m)
