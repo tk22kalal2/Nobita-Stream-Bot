@@ -55,7 +55,7 @@ def get_name(media_msg: Message) -> str:
     file_name = getattr(media, 'file_name', "")    
 
     # Check if the media_msg is a video and has a caption
-    elif isinstance(media, Video) and media_msg.caption:
+    if isinstance(media, Video) and media_msg.caption:
         return media_msg.caption.html
 
     # If both file_name and caption are absent, assign a numbered name
