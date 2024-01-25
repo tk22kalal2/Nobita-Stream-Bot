@@ -40,10 +40,11 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
-    <button class="magnet" style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="vlc_player()">
-        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    <button class="magnet" onclick="vlc_player()" style="width: 240px; height: 50px;">
+        <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="Watch in VLC PLAYER">
+    Watch in VLC PLAYER
     </button>
-
+    
     <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
         <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="MX PLAYER Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
