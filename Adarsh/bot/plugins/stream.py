@@ -234,25 +234,5 @@ async def channel_receive_handler(bot, broadcast):
 
 #batch2 command
 
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)    
-async def private_receive_handler(c: Client, m: Message):
-    if bool(CUSTOM_CAPTION) and bool(m.video):
-        caption = CUSTOM_CAPTION.format(
-            previouscaption="" if not m.caption else m.caption.html,
-            filename=m.video.file_name
-        )
-    else:
-        caption = m.caption.html if m.caption else get_name(m.video)
 
-    try:
-        log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
-        await asyncio.sleep(0.5)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
-        await log_msg.edit_reply_markup(reply_markup)
-        X = await m.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)                                         
-    except FloodWait as e:
-        print(f"Sleeping for {str(e.x)}s")
-        await asyncio.sleep(e.x)
         
