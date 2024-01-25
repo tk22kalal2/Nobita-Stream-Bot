@@ -11,6 +11,7 @@ StreamBot = Client(
     bot_token=Var.BOT_TOKEN,
     sleep_threshold=Var.SLEEP_THRESHOLD,
     workers=Var.WORKERS
+    db_channel=Var.DB_CHANNEL,
 )
 
 multi_clients = {}
