@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://biisal.github.io/Resources/StreamCSS.css">
+    <link rel="stylesheet" href="https://biisal.github.io/Resources/playerCss.css">
     <style>
         body {
             background-color: white;
@@ -31,14 +32,14 @@
         </div>
         <div class="nryt">
             <a class="home-btn magnet" href="#main" onclick="toggleWidthnav(this)">HOME</a>
-            <a href="#sec1" class="about-btn magnet" onclick="toggleWidthnav(this)">ABOUT</a>
+            <a href="#sec1" class="about-btn magnet" onclick="toggleWidthnav(this); loadAboutContent()">ABOUT</a>
         </div>
     </nav>
     <center>
         <div class="about-nav">
             <a href="#sec1" class="wlcm magnet" onclick="toggleWidth(this)">WELCOME</a>
             <a href="#sec2" class="abt-chnl magnet" onclick="toggleWidth(this)">CHANNELS</a>
-            <a href="#sec3" class="magnet bot-btn" onclick="toggleWidth(this) , bot_btn_clicked()">BOTS</a>
+            <a href="#sec3" class="magnet bot-btn" onclick="toggleWidth(this); bot_btn_clicked()">BOTS</a>
             <a href="#sec4" class="magnet contact-btn" onclick="toggleWidth(this)">LET'S TALK</a>
         </div>
     </center>
@@ -56,47 +57,27 @@
                 <div class="downloadBtn">
                     <button class="magnet" onclick="vlc_player()"><img src="https://i.postimg.cc/15TQ4y7B/vlc.png"
                             alt="">watch in VLC PLAYER</button>
-                    <button class="magnet" onclick="mx_player()"><img src="https://i.postimg.cc/sx4Msv4T/mx.png"
-                            alt="">watch in MX PLAYER</button>
-                    <button class="magnet" onclick="playit_player()"><img src="https://i.postimg.cc/RVGWYJFF/playit.png"
-                            alt="">watch in PLAYit
-                        PLAYER</button>
-                    <button class="magnet" onclick="km_player()"><img src="https://i.postimg.cc/wT9tFQ9Z/km.png"
-                            alt="">watch in KM PLAYER</button>
-                    <button class="magnet" onclick="s_player()"><img src="https://i.postimg.cc/XYJr6NGg/s.png"
-                            alt="">watch in S PLAYER</button>
-                    <button class="magnet" onclick="hd_player()"><img src="https://i.postimg.cc/rFT43LNh/hd.png"
-                            alt="">watch in HD
-                        PLAYER(4K)</button>
+                    <!-- Add other player buttons as needed -->
                     <button class="magnet" onclick="bisalDownload()"><img style="height: 35px;"
                             src="https://i.postimg.cc/Zncc9YLq/Pngtree-download-icon-3581467.png" alt="">download video
                     </button>
                 </div>
             </div>
-            <!-- No ABOUT Section Here -->
             <div class="abt" id="aboutSection">
-                <!-- No ABOUT Section Here -->
+                <!-- Content loaded dynamically here -->
             </div>
         </div>
     </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sheryjs/dist/Shery.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const uncopyableElement = document.querySelector(".uncopyable");
-            uncopyableElement.addEventListener("selectstart", function (event) {
-                event.preventDefault();
-            });
-        });
-    </script>
     <script src="js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-
+    <script src="https://biisal.github.io/Resources/StreamJs.js"></script>
+    <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const uncopyableElement = document.querySelector(".uncopyable");
@@ -106,24 +87,14 @@
         });
 
         function loadAboutContent() {
-            // Fetch the content of the external HTML file
             fetch('Adarsh/template/button.html')
                 .then(response => response.text())
                 .then(html => {
-                    // Insert the fetched HTML content into the aboutSection
                     document.getElementById('aboutSection').innerHTML = html;
                 })
                 .catch(error => console.error('Error fetching about content:', error));
         }
-
-        // Add an event listener to the "ABOUT" button
-        const aboutBtn = document.querySelector('.about-btn');
-        aboutBtn.addEventListener('click', loadAboutContent);
     </script>
-
-    <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
-    <script src="https://biisal.github.io/Resources/StreamJs.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
