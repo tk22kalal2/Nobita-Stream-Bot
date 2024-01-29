@@ -74,7 +74,7 @@
                 </div>
             </div>
             <!-- No ABOUT Section Here -->
-            <div class="abt">
+            <div class="abt" id="aboutSection">
                 <!-- No ABOUT Section Here -->
             </div>
         </div>
@@ -96,6 +96,31 @@
     <script>
         new WOW().init();
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uncopyableElement = document.querySelector(".uncopyable");
+            uncopyableElement.addEventListener("selectstart", function (event) {
+                event.preventDefault();
+            });
+        });
+
+        function loadAboutContent() {
+            // Fetch the content of the external HTML file
+            fetch('Adarsh/template/button.html')
+                .then(response => response.text())
+                .then(html => {
+                    // Insert the fetched HTML content into the aboutSection
+                    document.getElementById('aboutSection').innerHTML = html;
+                })
+                .catch(error => console.error('Error fetching about content:', error));
+        }
+
+        // Add an event listener to the "ABOUT" button
+        const aboutBtn = document.querySelector('.about-btn');
+        aboutBtn.addEventListener('click', loadAboutContent);
+    </script>
+
     <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
     <script src="https://biisal.github.io/Resources/StreamJs.js"></script>
     <script src="script.js"></script>
