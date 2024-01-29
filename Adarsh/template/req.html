@@ -112,22 +112,25 @@
                             </div>
                         </div>
                         <div class="abt-sec" id="sec3">
-                            <h1>OUR ALL <span>BOTS</span> LIST</h1>
-                            <div class="links bot-link">
-                                <a class="magnet" href="https://t.me/Pm_link_yojana_bot"><button>PM LINK
-                                        YOJANA</button></a>
-                                <a class="magnet" href="https://t.me/Ai_Auto_Filter_Bot"><button>AI FILTER
-                                        BOT</button></a>
-                                <a class="magnet" href="https://t.me/Bisal_File2Link_Bot"><button>FILE STREAM
-                                        BOT</button></a>
-                                <a class="magnet" href="https://t.me/File_RenamerV4_Bot"><button>FILE RENAMER
-                                        BOT</button></a>
-                                <a class="magnet" href="https://t.me/Wanda_Ki_Shakti_Bot"><button>WANDA KI SHAKTI
-                                        BOT</button></a>
-                                <a class="magnet" href="https://t.me/wanda_ki_shakti_2_bot"><button>WANDA KI SHAKTI 2.0
-                                        BOT</button></a>
-                            </div>
-                        </div>
+    <h1>OUR ALL <span>PREPLADDER</span> LIST</h1>
+    <div class="links bot-link">
+        <a class="magnet" href="https://t.me/Pm_link_yojana_bot"><button>PM LINK YOJANA</button></a>
+
+        <button class="collapsible" onclick="toggleText('tarangText')">AI FILTER BOT</button>
+        <div id="tarangText" class="content">
+            My name is Tarang.
+        </div>
+
+        <a class="magnet" href="https://t.me/Ai_Auto_Filter_Bot"><button>AI FILTER BOT</button></a>
+        <a class="magnet" href="https://t.me/Bisal_File2Link_Bot"><button>FILE STREAM BOT</button></a>
+        <a class="magnet" href="https://t.me/File_RenamerV4_Bot"><button>FILE RENAMER BOT</button></a>
+        <a class="magnet" href="https://t.me/Wanda_Ki_Shakti_Bot"><button>WANDA KI SHAKTI BOT</button></a>
+        <a class="magnet" href="https://t.me/wanda_ki_shakti_2_bot"><button>WANDA KI SHAKTI 2.0 BOT</button></a>
+    </div>
+</div>
+
+
+
                         <div class="abt-sec" id="sec4">
                             <!-- this code is written by @biisal tg:biisal-files  -->
                             <!-- stealing credit doesn't make you developer..so try to give full credit to the developer 😊 u will not loose anything for giving proper credit.   -->
@@ -220,6 +223,17 @@
         });
     });
 </script>
+<script>
+    function toggleText(elementId) {
+        var content = document.getElementById(elementId);
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+</script>
+
 <script src="js/wow.min.js"></script>
 <script>
     new WOW().init();
