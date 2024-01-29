@@ -143,7 +143,7 @@ async def batch(client: Client, message: Message):
                 reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=stream_link)]])
                 await log_msg.edit_reply_markup(reply_markup)
                 f_caption = f"<b>⏯: {caption}</b>"
-                X = await m.reply_text(text=f"<a href='{stream_link}'>{f_caption}</a>", disable_web_page_preview=True, quote=True)                                                         
+                X = await msg.reply_text(text=f"<a href='{stream_link}'>{f_caption}</a>", disable_web_page_preview=True, quote=True)                                                         
             except FloodWait as e:
                 print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
