@@ -148,47 +148,58 @@ async def batch(client: Client, message: Message):
                 print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
 
+
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
 async def private_receive_handler(c: Client, m: Message):
-    if CUSTOM_CAPTION is not None:
-        if m.video:
-            caption = CUSTOM_CAPTION.format(
-                previouscaption="" if not m.caption else m.caption.html,
-                filename=m.video.file_name
-            )
-            link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        elif m.document:
-            # Replace stream_link with download_link for documents
-            caption = CUSTOM_CAPTION.format(
-                previouscaption="" if not m.caption else m.caption.html,
-                filename=m.video.file_name
-            )
-            link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        else:
-            # Handle other file types or no file
-            caption = ""
-            link = ""
-
-        caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
-        caption = re.sub(r'\s+', ' ', caption.strip())
-        try:
-            log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
-            await asyncio.sleep(0.5)
-            stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-            download_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
-            await log_msg.edit_reply_markup(reply_markup)
-            F_text = f"<tr><td>&lt;a href='{link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
-            text = f"<tr><td>{F_text}</td></tr>"
-            X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)
-        except FloodWait as e:
-            print(f"Sleeping for {str(e.x)}s")
-            await asyncio.sleep(e.x)
+    if bool(CUSTOM_CAPTION) and bool(m.document):
+        caption = CUSTOM_CAPTION.format(
+            previouscaption="" if not m.caption else m.caption.html,
+            filename=m.video.file_name
+        )
     else:
-        # Handle the case when CUSTOM_CAPTION is None
-        # You might want to define a default caption or skip processing
-        print("CUSTOM_CAPTION is not defined")
+        caption = m.caption.html if m.caption else get_name(m.video)
+    caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
+    caption = re.sub(r'\s+', ' ', caption.strip())
 
+    try:
+        log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
+        await asyncio.sleep(0.5)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        download_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
+        await log_msg.edit_reply_markup(reply_markup)        
+        F_text = f"<tr><td>&lt;a href='{download_link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
+        text = f"<tr><td>{F_text}</td></tr>"
+        X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)
+    except FloodWait as e:
+        print(f"Sleeping for {str(e.x)}s")
+        await asyncio.sleep(e.x)
+
+@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
+async def private_receive_handler(c: Client, m: Message):
+    if bool(CUSTOM_CAPTION) and bool(m.video):
+        caption = CUSTOM_CAPTION.format(
+            previouscaption="" if not m.caption else m.caption.html,
+            filename=m.video.file_name
+        )
+    else:
+        caption = m.caption.html if m.caption else get_name(m.video)
+    caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
+    caption = re.sub(r'\s+', ' ', caption.strip())
+
+    try:
+        log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
+        await asyncio.sleep(0.5)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        download_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
+        await log_msg.edit_reply_markup(reply_markup)        
+        F_text = f"<tr><td>&lt;a href='{stream_link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
+        text = f"<tr><td>{F_text}</td></tr>"
+        X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)
+    except FloodWait as e:
+        print(f"Sleeping for {str(e.x)}s")
+        await asyncio.sleep(e.x)
 
 
 
