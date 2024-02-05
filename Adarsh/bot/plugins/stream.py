@@ -167,7 +167,8 @@ async def private_receive_handler(c: Client, m: Message):
         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
         await log_msg.edit_reply_markup(reply_markup)
         f_caption = f"<b>{caption}</b>"
-        X = await m.reply_text(text=f"<tr><td><a href="{stream_link}" target="_blank">{f_caption}</a></td></tr>", disable_web_page_preview=True, quote=True)                                         
+        text = f"<tr><td><a href="{stream_link}" target="_blank">{f_caption}</a></td></tr>"
+        X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)                                         
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
