@@ -182,7 +182,7 @@ async def private_receive_handler(c: Client, m: Message):
             download_link=f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         )
     else:
-        caption = m.caption.html if m.caption else get_name(m.document)
+        caption = m.caption.html if m.caption else get_name(m.video)
     
         caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
         caption = re.sub(r'\s+', ' ', caption.strip())
