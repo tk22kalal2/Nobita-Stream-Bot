@@ -152,15 +152,17 @@ async def batch(client: Client, message: Message):
 async def private_receive_handler(c: Client, m: Message):
     if CUSTOM_CAPTION is not None:
         if m.video:
-            caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
-            else:
-                caption = "" if not msg.caption else msg.caption.html
+            caption = CUSTOM_CAPTION.format(
+                previouscaption="" if not m.caption else m.caption.html,
+                filename=m.video.file_name
+            )
             link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         elif m.document:
             # Replace stream_link with download_link for documents
-            caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
-            else:
-                caption = "" if not msg.caption else msg.caption.html
+            caption = CUSTOM_CAPTION.format(
+                previouscaption="" if not m.caption else m.caption.html,
+                filename=m.video.file_name
+            )
             link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         else:
             # Handle other file types or no file
@@ -175,7 +177,7 @@ async def private_receive_handler(c: Client, m: Message):
             stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
             download_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
-            await log_msg.edit_reply_markup(reply_markup)        
+            await log_msg.edit_reply_markup(reply_markup)
             F_text = f"<tr><td>&lt;a href='{link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
             text = f"<tr><td>{F_text}</td></tr>"
             X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)
@@ -186,6 +188,7 @@ async def private_receive_handler(c: Client, m: Message):
         # Handle the case when CUSTOM_CAPTION is None
         # You might want to define a default caption or skip processing
         print("CUSTOM_CAPTION is not defined")
+
 
 
 
