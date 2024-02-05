@@ -152,17 +152,15 @@ async def batch(client: Client, message: Message):
 async def private_receive_handler(c: Client, m: Message):
     if CUSTOM_CAPTION is not None:
         if m.video:
-            caption = CUSTOM_CAPTION.format(
-                previouscaption="" if not m.caption else m.caption.html,
-                filename=m.video.file_name
-            )
+            caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
+            else:
+                caption = "" if not msg.caption else msg.caption.html
             link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         elif m.document:
             # Replace stream_link with download_link for documents
-            caption = CUSTOM_CAPTION.format(
-                previouscaption="" if not m.caption else m.caption.html,
-                filename=m.document.file_name
-            )
+            caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html, filename=msg.document.file_name)
+            else:
+                caption = "" if not msg.caption else msg.caption.html
             link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         else:
             # Handle other file types or no file
