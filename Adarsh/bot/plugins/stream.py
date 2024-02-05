@@ -1,7 +1,4 @@
-
-
-
-#(c) NobiDeveloper
+import re
 import os
 import asyncio
 from asyncio import TimeoutError
@@ -130,6 +127,8 @@ async def batch(client: Client, message: Message):
             else:
                 caption = "" if not msg.caption else msg.caption.html
 
+            caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
+
             if DISABLE_CHANNEL_BUTTON:
                 reply_markup = msg.reply_markup
             else:
@@ -158,6 +157,7 @@ async def private_receive_handler(c: Client, m: Message):
         )
     else:
         caption = m.caption.html if m.caption else get_name(m.video)
+    caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
 
     try:
         log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
