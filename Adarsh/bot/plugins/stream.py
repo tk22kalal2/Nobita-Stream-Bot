@@ -165,9 +165,8 @@ async def private_receive_handler(c: Client, m: Message):
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
-        await log_msg.edit_reply_markup(reply_markup)
-        f_caption = f"<b>{caption}</b>"
-        text = f"<tr><td><a href='{stream_link}' target='_blank'> {caption} </a></td></tr>"
+        await log_msg.edit_reply_markup(reply_markup)        
+        text = f"<tr><td><a href='{stream_link}' target='_blank'> {caption} </a></td></tr>".replace('<a', '<span').replace('</a>', '</span>')
         X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
