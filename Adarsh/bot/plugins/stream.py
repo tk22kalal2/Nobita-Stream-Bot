@@ -149,7 +149,7 @@ async def batch(client: Client, message: Message):
                 await asyncio.sleep(e.x)
 
 
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
+@StreamBot.on_message((filters.private) & (filters.document | filters.audio | filters.photo), group=3)
 async def private_receive_handler(c: Client, m: Message):
     if bool(CUSTOM_CAPTION) and bool(m.document):
         caption = CUSTOM_CAPTION.format(
@@ -175,7 +175,7 @@ async def private_receive_handler(c: Client, m: Message):
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
 
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)
+@StreamBot.on_message((filters.private) & (filters.video | filters.audio | filters.photo), group=3)
 async def private_receive_handler(c: Client, m: Message):
     if bool(CUSTOM_CAPTION) and bool(m.video):
         caption = CUSTOM_CAPTION.format(
