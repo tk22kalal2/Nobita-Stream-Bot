@@ -172,6 +172,7 @@ async def private_receive_handler(c: Client, m: Message):
         F_text = f"<tr><td>&lt;a href='{download_link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
         text = f"<tr><td>{F_text}</td></tr>"
         X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)
+        await asyncio.sleep(3)
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
