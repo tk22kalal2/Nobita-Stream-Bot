@@ -161,6 +161,7 @@ async def private_receive_handler(c: Client, m: Message):
         caption = m.caption.html if m.caption else get_name(m.video)
     caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
     caption = re.sub(r'\s+', ' ', caption.strip())
+    caption = re.sub(r'\s*#\w+', '', caption)
 
     try:
         log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
