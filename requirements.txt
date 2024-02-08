@@ -1,7 +1,7 @@
 pyrogram
-tgcrypto<=1.2.3
+tgcrypto
 aiohttp
-python-dotenv<=0.20.0
+python-dotenv
 motor
 aiofiles
 dnspython
@@ -9,5 +9,7 @@ apscheduler
 requests
 psutil
 pyromod
-telethon
+colorama
 jinja2
+Flask
+gunicorn
