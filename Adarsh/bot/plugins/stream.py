@@ -34,6 +34,14 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 DB_CHANNEL = int(getenv('DB_CHANNEL', ''))
 
+async def get_chat_members_list(self, chat_id):
+    try:
+        members = await self.get_chat_members(chat_id)
+        return members
+    except Exception as e:
+        print(f"Error fetching chat members: {e}")
+        return []
+        
 @StreamBot.on_message(filters.private & filters.user(list(Var.OWNER_ID)) & filters.command('batch'))
 async def batch(client: Client, message: Message):
     while True:
@@ -145,7 +153,8 @@ async def batch(client: Client, message: Message):
        
             try:
                 channel_info = await client.get_chat(DB_CHANNEL)
-                async for member in client.iter_chat_members(channel_info.id):
+                members_list = await client.get_chat_members_list(channel_info.id)
+                for member in members_list:
                     # Send messages to individual members here
                     try:
                         if member.user:
@@ -162,6 +171,12 @@ async def batch(client: Client, message: Message):
                 print(f"Error sending message to channel members: {e}")
  
 
+
+
+
+    
+
+    
 
 
 
