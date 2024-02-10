@@ -10,17 +10,17 @@ class CustomClient(Client):
         self.db_channel = db_channel
         super().__init__(*args, **kwargs)
 
-    async def iter_chat_members(self, chat_id):
+    async def get_chat_members_list(self, chat_id):
         """
-        This method iterates over the members of a chat.
+        This method fetches the list of members of a chat.
 
-        :param chat_id: The ID of the chat whose members need to be iterated over.
-        :return: An async generator yielding the members of the chat.
+        :param chat_id: The ID of the chat whose members need to be fetched.
+        :return: A list of members of the chat.
         """
         try:
             members = await self.get_chat_members(chat_id)
-            for member in members:
-                yield member
+            return members
         except Exception as e:
             print(f"Error fetching chat members: {e}")
+            return []
 
