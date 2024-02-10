@@ -13,11 +13,11 @@ class CustomClient(Client):
     async def iter_chat_members(self, chat_id):
         """
         This method iterates over the members of a chat.
-        
+
         :param chat_id: The ID of the chat whose members need to be iterated over.
-        :return: An async iterator yielding the members of the chat.
+        :return: An async generator yielding the members of the chat.
         """
-        offset = 0
+        offset = None
         limit = 100  # Adjust the limit as per your requirement
         while True:
             try:
@@ -26,7 +26,8 @@ class CustomClient(Client):
                     break
                 for member in members:
                     yield member
-                offset += limit
+                offset = members[-1].user.id  # Set the offset for the next batch
             except Exception as e:
                 print(f"Error fetching chat members: {e}")
                 break
+
