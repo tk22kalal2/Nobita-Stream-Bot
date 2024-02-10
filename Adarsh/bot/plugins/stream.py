@@ -138,25 +138,14 @@ async def batch(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
-                                          protect_content=PROTECT_CONTENT)
-                await asyncio.sleep(1)
-                snt_msgs.append(snt_msg)
-            except FloodWait as e:
-                await asyncio.sleep(e.x)
-                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
-                                          protect_content=PROTECT_CONTENT)
-                snt_msgs.append(snt_msg)
-            except:
-                pass
-
-        await asyncio.sleep(SECONDS)
-
-        for snt_msg in snt_msgs:
-            try:
-                await snt_msg.delete()
-            except:
-                pass
+                # Get all the members of the DB_CHANNEL
+                channel_info = await client.get_chat(DB_CHANNEL)
+                async for member in client.iter_chat_members(channel_info.id):
+                    if member.user:
+                        # Send the message to each member individually
+                        await client.send_message(chat_id=member.user.id, text=msg.text, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup)
+            except Exception as e:
+                print(f"Error sending message to channel members: {e}")
 
 
 
