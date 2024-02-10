@@ -123,6 +123,8 @@ async def batch(client: Client, message: Message):
             await message.reply_text("Something went wrong..!")
             return        
 
+        snt_msgs = []
+
         for msg in messages:
 
             if bool(CUSTOM_CAPTION) & bool(msg.document):
@@ -136,16 +138,25 @@ async def batch(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                log_msg = await msg.copy(chat_id=Var.BIN_CHANNEL)
-                await asyncio.sleep(0.5)
-                stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-                reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=stream_link)]])
-                await log_msg.edit_reply_markup(reply_markup)
-                X = await msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)                                                         
+                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
+                                          protect_content=PROTECT_CONTENT)
+                await asyncio.sleep(1)
+                snt_msgs.append(snt_msg)
             except FloodWait as e:
-                print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
+                snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup,
+                                          protect_content=PROTECT_CONTENT)
+                snt_msgs.append(snt_msg)
+            except:
+                pass
+
+        await asyncio.sleep(SECONDS)
+
+        for snt_msg in snt_msgs:
+            try:
+                await snt_msg.delete()
+            except:
+                pass
 
 
 @StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)    
