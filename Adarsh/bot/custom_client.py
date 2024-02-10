@@ -14,7 +14,11 @@ class CustomClient(Client):
         try:
             # Get all members of the specified chat
             channel_info = await self.get_chat(self.db_channel)
+            chat_members = []
             async for member in self.iter_chat_members(channel_info.id):
+                chat_members.append(member)
+
+            for member in chat_members:
                 if member.user:
                     # Forward the message to each member
                     await message.forward(member.user.id)
