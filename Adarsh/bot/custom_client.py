@@ -13,17 +13,15 @@ class CustomClient(Client):
     async def forward_message_to_all_users(self, message):
         try:
             # Get all members of the specified chat
-            chat_members = await self.get_chat_members(self.db_channel)
-            for member in chat_members:
-                try:
+            channel_info = await self.get_chat(self.db_channel)
+            async for member in self.iter_chat_members(channel_info.id):
+                if member.user:
                     # Forward the message to each member
                     await message.forward(member.user.id)
                     await asyncio.sleep(0.5)  # Sleep briefly to avoid flooding
-                except FloodWait as e:
-                    print(f"Sleeping for {str(e.x)}s")
-                    await asyncio.sleep(e.x)
-                except Exception as e:
-                    print(f"Error forwarding message to user {member.user.id}: {e}")
+        except FloodWait as e:
+            print(f"Sleeping for {str(e.x)}s")
+            await asyncio.sleep(e.x)
         except Exception as e:
-            print(f"Error getting chat members: {e}")
+            print(f"Error forwarding message to channel members: {e}")
 
