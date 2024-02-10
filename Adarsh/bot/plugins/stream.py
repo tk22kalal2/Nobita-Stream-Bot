@@ -144,12 +144,25 @@ async def batch(client: Client, message: Message):
                 # Get all the members of the DB_CHANNEL
                 channel_info = await client.get_chat(DB_CHANNEL)
                 chat_members = await client.get_chat_members(channel_info.id)  # Get all chat members
+            
+                # Prepare a list of coroutines to send messages to each member
+                coroutines = []
                 for member in chat_members:
                     if member.user:
-                        # Send the message to each member individually
-                        await client.send_message(chat_id=member.user.id, text=msg.text, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup)
+                        coroutines.append(client.send_message(
+                            chat_id=member.user.id,
+                            text=msg.text,
+                            caption=caption,
+                            parse_mode=ParseMode.HTML,
+                            reply_markup=reply_markup
+                        ))
+            
+                # Execute all coroutines concurrently using asyncio.gather()
+                await asyncio.gather(*coroutines)
+            
             except Exception as e:
                 print(f"Error sending message to channel members: {e}")
+
 
 
 
