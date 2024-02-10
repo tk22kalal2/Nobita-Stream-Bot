@@ -16,17 +16,25 @@ class CustomClient(Client):
             channel_info = await self.get_chat(DB_CHANNEL)
             chat_members = await client.get_chat_members(channel_info.id)
             chat_members_list = [member async for member in chat_members]
-            
+
             # List to hold all message sending tasks
             send_message_tasks = []
             for member in chat_members_list:
                 if member.user:
                     # Start a task to send message to each member
-                    task = asyncio.create_task(client.send_message(chat_id=member.user.id, text=message.text, caption=caption, parse_mode=ParseMode.HTML, reply_markup=reply_markup))
+                    task = asyncio.create_task(self.send_message_to_user(member.user.id, message.text, caption, ParseMode.HTML, reply_markup))
                     send_message_tasks.append(task)
 
             # Wait for all message sending tasks to complete
             await asyncio.gather(*send_message_tasks)
         except Exception as e:
             print(f"Error sending message to channel members: {e}")
+
+    async def send_message_to_user(self, user_id, text, caption, parse_mode, reply_markup):
+        try:
+            # Send message to user
+            await self.send_message(chat_id=user_id, text=text, caption=caption, parse_mode=parse_mode, reply_markup=reply_markup)
+        except Exception as e:
+            print(f"Error sending message to user {user_id}: {e}")
+
 
