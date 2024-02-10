@@ -145,7 +145,7 @@ async def batch(client: Client, message: Message):
             try:
                 # Get all the members of the DB_CHANNEL
                 channel_info = await client.get_chat(DB_CHANNEL)
-                chat_members = await client.iter_chat_members(channel_info.id)
+                chat_members = client.iter_chat_members(channel_info.id)
 
             
                 # List to hold coroutines
