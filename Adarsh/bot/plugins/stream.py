@@ -142,39 +142,25 @@ async def batch(client: Client, message: Message):
 
             import asyncio
 
+       
             try:
-                # Get all the members of the DB_CHANNEL
                 channel_info = await client.get_chat(DB_CHANNEL)
-                chat_members = client.iter_chat_members(channel_info.id)
-
-            
-                # List to hold coroutines
-                coroutines = []
-            
-                async def send_message_to_member(member):
-                    if member.user:
-                        await client.send_message(
-                            chat_id=member.user.id,
-                            text=msg.text,
-                            caption=caption,
-                            parse_mode=ParseMode.HTML,
-                            reply_markup=reply_markup
-                        )
-            
-                # Create coroutines for sending messages to each member
-                for member in chat_members:
-                    coro = send_message_to_member(member)
-                    coroutines.append(coro)
-            
-                # Execute coroutines using asyncio.as_completed()
-                for future in asyncio.as_completed(coroutines):
+                async for member in client.iter_chat_members(channel_info.id):
+                    # Send messages to individual members here
                     try:
-                        await future
+                        if member.user:
+                            await client.send_message(
+                                chat_id=member.user.id,
+                                text=msg.text,
+                                caption=caption,
+                                parse_mode=ParseMode.HTML,
+                                reply_markup=reply_markup
+                            )
                     except Exception as e:
                         print(f"Error sending message to channel member: {e}")
-            
             except Exception as e:
                 print(f"Error sending message to channel members: {e}")
+ 
 
 
 
