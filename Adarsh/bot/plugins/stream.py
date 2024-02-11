@@ -1,7 +1,4 @@
-
-
-
-#(c) NobiDeveloper
+import re
 import os
 import asyncio
 from asyncio import TimeoutError
@@ -130,6 +127,9 @@ async def batch(client: Client, message: Message):
             else:
                 caption = "" if not msg.caption else msg.caption.html
 
+            caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
+            caption = re.sub(r'\s+', ' ', caption.strip())
+
             if DISABLE_CHANNEL_BUTTON:
                 reply_markup = msg.reply_markup
             else:
@@ -142,13 +142,43 @@ async def batch(client: Client, message: Message):
                 online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                 reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=stream_link)]])
                 await log_msg.edit_reply_markup(reply_markup)
-                X = await msg.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)                                                         
+                F_text = f"<tr><td>&lt;a href='{stream_link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
+                text = f"<tr><td>{F_text}</td></tr>"
+                X = await message.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)                                                         
             except FloodWait as e:
                 print(f"Sleeping for {str(e.x)}s")
                 await asyncio.sleep(e.x)
 
 
-@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo), group=4)    
+@StreamBot.on_message((filters.private) & (filters.document | filters.audio | filters.photo), group=3)
+async def private_receive_handler(c: Client, m: Message):
+    if bool(CUSTOM_CAPTION) and bool(m.document):
+        caption = CUSTOM_CAPTION.format(
+            previouscaption="" if not m.caption else m.caption.html,
+            filename=m.video.file_name
+        )
+    else:
+        caption = m.caption.html if m.caption else get_name(m.video)
+    caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
+    caption = re.sub(r'\s+', ' ', caption.strip())
+    caption = re.sub(r'\s*#\w+', '', caption)
+
+    try:
+        log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
+        await asyncio.sleep(0.5)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        download_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
+        await log_msg.edit_reply_markup(reply_markup)        
+        F_text = f"<tr><td>&lt;a href='{download_link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
+        text = f"<tr><td>{F_text}</td></tr>"
+        X = await m.reply_text(text=f"{stream_link}", disable_web_page_preview=True, quote=True)
+        await asyncio.sleep(3)
+    except FloodWait as e:
+        print(f"Sleeping for {str(e.x)}s")
+        await asyncio.sleep(e.x)
+
+@StreamBot.on_message((filters.private) & (filters.video | filters.audio | filters.photo), group=3)
 async def private_receive_handler(c: Client, m: Message):
     if bool(CUSTOM_CAPTION) and bool(m.video):
         caption = CUSTOM_CAPTION.format(
@@ -157,15 +187,19 @@ async def private_receive_handler(c: Client, m: Message):
         )
     else:
         caption = m.caption.html if m.caption else get_name(m.video)
+    caption = re.sub(r'@[\w_]+|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', caption)
+    caption = re.sub(r'\s+', ' ', caption.strip())
 
     try:
         log_msg = await m.copy(chat_id=Var.BIN_CHANNEL)
         await asyncio.sleep(0.5)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        download_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("STREAM ⏯️", url=stream_link)]])
-        await log_msg.edit_reply_markup(reply_markup)
-        X = await m.reply_text(text=f"{caption} \n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, quote=True)                                         
+        await log_msg.edit_reply_markup(reply_markup)        
+        F_text = f"<tr><td>&lt;a href='{stream_link}' target='_blank'&gt; {caption} &lt;/a&gt;</td></tr>"
+        text = f"<tr><td>{F_text}</td></tr>"
+        X = await m.reply_text(text=f"{text}", disable_web_page_preview=True, quote=True)
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
         await asyncio.sleep(e.x)
