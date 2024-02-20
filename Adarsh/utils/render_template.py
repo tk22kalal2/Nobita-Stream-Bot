@@ -53,7 +53,7 @@ async def render_page(id, secure_hash):
     </button>
 
     <button id="additionalbutton" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-        <img src="path/to/your/image.jpg" alt="Image">
+        <img src="mxlogo.png" alt="Image">
     </button>
 
     <br><br> <!-- Add vertical gap here -->
