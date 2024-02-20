@@ -1,4 +1,4 @@
-from Adarsh.vars import Var
+9from Adarsh.vars import Var
 from Adarsh.bot import StreamBot
 from Adarsh.utils.human_readable import humanbytes
 from Adarsh.utils.file_properties import get_file_ids
@@ -40,7 +40,7 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>   
-    <button style="width: 240px; height: 50px; border-radius: 25px; border: none; color: #00a037; background: #ebeef1; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70);" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70);" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
     <i class="fa-solid fa-play" style="margin-right: 10px;"></i>
     MX-Player
     </button>
