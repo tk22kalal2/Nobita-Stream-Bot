@@ -62,6 +62,25 @@ async def render_page(id, secure_hash):
     <
     </center>
 </p>
+    <div class="downloadBtn">
+                    <button class="magnet" onclick="vlc_player()"><img src="https://i.postimg.cc/15TQ4y7B/vlc.png"
+                            alt="">watch in VLC PLAYER</button>
+                    <button class="magnet" onclick="mx_player()"><img src="https://i.postimg.cc/sx4Msv4T/mx.png"
+                            alt="">watch in MX PLAYER</button>
+                    <button class="magnet" onclick="playit_player()"><img src="https://i.postimg.cc/RVGWYJFF/playit.png"
+                            alt="">watch in PLAYit
+                        PLAYER</button>
+                    <button class="magnet" onclick="km_player()"><img src="https://i.postimg.cc/wT9tFQ9Z/km.png"
+                            alt="">watch in KM PLAYER</button>
+                    <button class="magnet" onclick="s_player()"><img src="https://i.postimg.cc/XYJr6NGg/s.png"
+                            alt="">watch in S PLAYER</button>
+                    <button class="magnet" onclick="hd_player()"><img src="https://i.postimg.cc/rFT43LNh/hd.png"
+                            alt="">watch in HD
+                        PLAYER(4K)</button>
+                    <button class="magnet" onclick="bisalDownload()"><img style="height: 35px;"
+                            src="https://i.postimg.cc/Zncc9YLq/Pngtree-download-icon-3581467.png" alt="">download video
+                    </button>
+                </div>
     <a href="//www.dmca.com/Protection/Status.aspx?ID=fea8fffa-2c9a-41c1-a05b-8235f4492291" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/DMCA_logo-std-btn120w.png?ID=fea8fffa-2c9a-41c1-a05b-8235f4492291"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
 '''
 
