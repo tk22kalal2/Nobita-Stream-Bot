@@ -40,9 +40,10 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>   
-    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden; background-color: #f0faff;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-        <img src="https://graph.org/file/36468c2ed2f2703cfea30.jpg" alt="MX PLAYER Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-    </button>
+    <button style="width: 240px; height: 50px; border-radius: 25px; border: none; color: #00a037; background: #ebeef1; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70);" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+    <!-- No image included -->
+     </button>
+
 
     <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden; background-color: #ADD8E6;" onclick="window.location.href = 'vlc://{current_url}'">
         <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
