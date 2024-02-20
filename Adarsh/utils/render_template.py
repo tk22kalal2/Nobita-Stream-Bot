@@ -44,18 +44,18 @@ async def render_page(id, secure_hash):
     <i class="fa-solid fa-play" style="margin-right: 10px;"></i>
     MX-Player
     </button>
-
-    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden; background-color: #ADD8E6;" onclick="window.location.href = 'vlc://{current_url}'">
-        <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70);" onclick="window.location.href = 'vlc://{current_url}'">
+    <i class="fa-solid fa-circle-play" style="margin-right: 10px;"></i>
+    VLC-Player
+    </button>
+    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70);" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
+    <i class="fa-solid fa-file-video" style="margin-right: 10px;"></i>
+    Playit-Player
     </button>
     
-    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-        <img src="https://graph.org/file/76bb156c0944c056d05b9.jpg" alt="Playit Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-    </button>
-
     <br><br> <!-- Add vertical gap here -->
         
-    <button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
+    <button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
     
     </center>
 </p>
