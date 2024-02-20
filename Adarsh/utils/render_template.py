@@ -1,4 +1,4 @@
-9from Adarsh.vars import Var
+from Adarsh.vars import Var
 from Adarsh.bot import StreamBot
 from Adarsh.utils.human_readable import humanbytes
 from Adarsh.utils.file_properties import get_file_ids
