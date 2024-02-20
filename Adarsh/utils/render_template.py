@@ -45,10 +45,11 @@ async def render_page(id, secure_hash):
     MX-Player
    </button>
 
-    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 5px -1px rgba(255, 255, 255, 0.50); margin-bottom: 10px;" onclick="window.location.href = 'vlc://{current_url}'">
+    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.08), -5px -5px 5px -1px rgba(200, 200, 200, 0.50); margin-bottom: 10px;" onclick="window.location.href = 'vlc://{current_url}'">
     <i class="fa-solid fa-circle-play" style="margin-right: 10px;"></i>
     VLC-Player
     </button>
+
 
 
     <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70); margin-bottom: 10px;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
