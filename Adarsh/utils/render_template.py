@@ -41,7 +41,7 @@ async def render_page(id, secure_hash):
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
     <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px 40px; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-        <img src="1000029028-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 70px; height: auto; display: block; margin: 0 auto;">
+        <img src="Adarsh/utils/1000029028-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 70px; height: auto; display: block; margin: 0 auto;">
     </button>
     <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
         <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="MX PLAYER Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
