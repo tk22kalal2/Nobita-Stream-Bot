@@ -41,7 +41,7 @@ async def render_page(id, secure_hash):
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
     <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px 40px; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-        <img src="https://i.postimg.cc/7PX0PbGs/IMG-20240301-WA0019.jpg" alt="MX PLAYER Logo" style="max-width: 70px; height: auto; display: block; margin: 0 auto;">
+        <img src="https://i.postimg.cc/L4xq42xt/mxlogo-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 70px; height: auto; display: block; margin: 0 auto;">
     </button>
     
     <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px 40px; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'vlc://{current_url}'">
@@ -49,7 +49,7 @@ async def render_page(id, secure_hash):
     </button>
     
     <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px 40px; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-        <img src="https://i.postimg.cc/FFJz8Rbk/IMG-20240301-WA0018.jpg" alt="MX PLAYER Logo" style="max-width: 70px; height: auto; display: block; margin: 0 auto;">
+        <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 70px; height: auto; display: block; margin: 0 auto;">
     </button>
     
 
