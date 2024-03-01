@@ -40,26 +40,21 @@ async def render_page(id, secure_hash):
     <p>
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>   
-    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: insert 3px 3px 6px #101114, inset -3px -3px 6px #24253a; margin-bottom: 10px;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-    <i class="fa-solid fa-play" style="margin-right: 10px;"></i>
-    MX-Player
-   </button>
-
-    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 5px 5px 5px -1px rgba(10, 99, 169, 0.08), -5px -5px 5px -1px rgba(200, 200, 200, 0.50); margin-bottom: 10px;" onclick="window.location.href = 'vlc://{current_url}'">
-    <i class="fa-solid fa-circle-play" style="margin-right: 10px;"></i>
-    VLC-Player
+    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
+        <img src="https://graph.org/file/f82545dc211d0d3ce2786.jpg" alt="MX PLAYER Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
 
-
-
-    <button style="width: 240px; height: 50px; border-radius: 6px; border: none; color: #1b94e7; background: #1a1b1f; font-size: 16px; cursor: pointer; font-weight: 600; box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70); margin-bottom: 10px;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-    <i class="fa-solid fa-file-video" style="margin-right: 10px;"></i>
-    Playit-Player
+    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden; background-color: #ADD8E6;" onclick="window.location.href = 'vlc://{current_url}'">
+        <img src="https://graph.org/file/dbdd7bcc424db07891ef2.jpg" alt="VLC Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
     </button>
     
+    <button style="border: 0; padding: 0; width: 240px; height: 50px; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
+        <img src="https://graph.org/file/76bb156c0944c056d05b9.jpg" alt="Playit Logo" style="width: 100%; height: 100%; border-radius: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    </button>
+
     <br><br> <!-- Add vertical gap here -->
         
-    <button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
+    <button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
     
     </center>
 </p>
