@@ -41,28 +41,25 @@ async def render_page(id, secure_hash):
     <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
     <center>
     <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px auto; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">
-    <img src="https://i.postimg.cc/L4xq42xt/mxlogo-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 auto;">
-    </button>
-
-<!-- Add a line space here -->
-
-<button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px auto; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'vlc://{current_url}'">
-    <img src="https://i.postimg.cc/tCs9xqp5/1000029028-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 280px; height: 40px; display: block; margin: 0 auto;">
+    <img src="https://i.postimg.cc/L4xq42xt/mxlogo-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 30px;">
 </button>
 
-<!-- Add another line space here -->
+<div style="height: 10px;"></div>
+
+<button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px 40px; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'vlc://{current_url}'">
+    <img src="https://i.postimg.cc/tCs9xqp5/1000029028-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 280px; height: 40px; display: block; margin: 0 30px;">
+</button>
+
+<div style="height: 10px;"></div>
 
 <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px auto; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-    <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 auto;">
+    <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 30px;">
 </button>
 
+<div style="height: 20px;"></div>
 
-    
+<button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
 
-    <br><br> <!-- Add vertical gap here -->
-        
-    <button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border: 2px solid black; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
-    
     </center>
 </p>
     <a href="//www.dmca.com/Protection/Status.aspx?ID=fea8fffa-2c9a-41c1-a05b-8235f4492291" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/DMCA_logo-std-btn120w.png?ID=fea8fffa-2c9a-41c1-a05b-8235f4492291"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
