@@ -55,12 +55,12 @@ async def render_page(id, secure_hash):
 </button>
 <div style="height: 10px;"></div>
 <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px auto; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = '`intent:${current_url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;S.title={file_data.file_name};end`">
-    <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 80px;">
+    <img src="https://i.postimg.cc/WzPyFbQp/ZKTg-V9-HV-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 80px;">
 </button>
 
 <div style="height: 20px;"></div>
 
-<button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: blue; border: 0; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
+<button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: skyblue; border: 0; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
 
     </center>
 </p>
