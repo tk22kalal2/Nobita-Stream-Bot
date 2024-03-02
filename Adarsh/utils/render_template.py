@@ -65,6 +65,6 @@ async def render_page(id, secure_hash):
     </center>
 </p>
     <center>Copyright © 2024 NEXTPULSE.<br>All Rights Reserved.<br><a href="//www.dmca.com/Protection/Status.aspx?ID=fea8fffa-2c9a-41c1-a05b-8235f4492291" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w100-5x1-02.png?ID=fea8fffa-2c9a-41c1-a05b-8235f4492291"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script></center>
-
+'''
     html += html_code    
     return html
