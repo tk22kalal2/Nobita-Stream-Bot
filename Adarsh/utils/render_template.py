@@ -44,8 +44,6 @@ async def render_page(id, secure_hash):
     <img src="https://i.postimg.cc/L4xq42xt/mxlogo-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 30px;">
 </button>
 
-<div style="height: 10px;"></div>
-
 <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px 40px; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'vlc://{current_url}'">
     <img src="https://i.postimg.cc/tCs9xqp5/1000029028-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 280px; height: 40px; display: block; margin: 0 30px;">
 </button>
@@ -53,11 +51,11 @@ async def render_page(id, secure_hash):
 <div style="height: 10px;"></div>
 
 <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px auto; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">
-    <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 30px;">
+    <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 60px;">
 </button>
 <div style="height: 10px;"></div>
 <button style="display: inline-block; border-radius: 5px; border: none; cursor: pointer; padding: 2px auto; text-align: center; text-decoration: none; background-color: #c0e0ff; overflow: hidden;" onclick="window.location.href = '`intent:${current_url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;S.title={file_data.file_name};end`">
-    <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 30px;">
+    <img src="https://i.postimg.cc/4Nx2bBKX/c0-C4vn-Aa-1-removebg-preview.png" alt="MX PLAYER Logo" style="max-width: 150px; height: 40px; display: block; margin: 0 60px;">
 </button>
 
 <div style="height: 20px;"></div>
