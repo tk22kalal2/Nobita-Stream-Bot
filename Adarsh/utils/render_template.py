@@ -1,4 +1,4 @@
-from Adarsh.vars import Var
+rom Adarsh.vars import Var
 from Adarsh.bot import StreamBot
 from Adarsh.utils.human_readable import humanbytes
 from Adarsh.utils.file_properties import get_file_ids
@@ -60,7 +60,7 @@ async def render_page(id, secure_hash):
 
 <div style="height: 20px;"></div>
 
-<button style="border: 0; padding: 0; width: 300px; height: 40px; font-size: 20px; background-color: skyblue; border: 0; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
+<button style="border: 0; padding: 0; width: 320px; height: 40px; font-size: 20px; background-color: skyblue; border: 0; border-radius: 0; border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; padding: 0; color: white;" onclick="window.location.href = '{current_url}'">Download Now</button>
 
     </center>
 </p>
