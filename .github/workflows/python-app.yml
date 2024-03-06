@@ -12,11 +12,6 @@ on:
 permissions:
   contents: read
   
-on:
-  schedule:
-    - cron: "*/2 * * * *"
-  workflow_dispatch:
-  
 jobs:
   build:
 
