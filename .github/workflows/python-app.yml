@@ -23,4 +23,4 @@ jobs:
         pip install python-telegram-bot
 
     - name: Run Bot
-      run: python Adarsh/bot_script.py
+      run: python Adarsh/__main__.py
