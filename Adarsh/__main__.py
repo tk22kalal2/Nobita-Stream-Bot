@@ -6,7 +6,7 @@ import logging
 import importlib
 from pathlib import Path
 from pyrogram import idle
-from Adarsh.bot import StreamBot
+from Adarsh.bot.__init__.py import StreamBot
 from .vars import Var
 from aiohttp import web
 from .server import web_server
